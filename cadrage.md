@@ -25,22 +25,49 @@ Puis, dans un second temps :
 **Parmi les produits présentés comme sains, peut-on détecter ceux qui sont en réalité de mauvaise qualité nutritionnelle ?**
 
 ---
+---
+
 ## 3. Exploration des APIs candidates
 
-Avant de choisir la source finale des données, nous avons comparé plusieurs APIs publiques et gratuites afin d’identifier celle qui permet de construire un problème de classification supervisée avec une variable cible naturelle.
+Avant de choisir la source finale des données, nous avons exploré plusieurs APIs publiques liées au domaine de l’alimentation et de la nutrition.  
+L’objectif était de trouver une API capable de fournir un volume suffisant de données, des variables exploitables pour le Machine Learning, ainsi qu’une variable cible naturelle pour un problème de classification supervisée.
+
+### 3.1 APIs étudiées
 
 | API candidate | Domaine | Données disponibles | Questions métier possibles | Avantages | Limites | Décision |
 |---|---|---|---|---|---|---|
-| Open Food Facts | Santé alimentaire | Produits alimentaires, catégories, labels, valeurs nutritionnelles, Nutri-Score | Peut-on prédire si un produit possède une mauvaise qualité nutritionnelle ? Peut-on identifier les produits à image saine mais mauvais nutritionnellement ? | API publique, gratuite, grand volume de données, présence du Nutri-Score comme cible naturelle | Données parfois manquantes car base collaborative | Retenue |
-| OpenLibrary | Culture / livres | Titres, auteurs, années, sujets, langues | Peut-on prédire la catégorie ou la popularité d’un livre ? | API gratuite, données nombreuses | Variable cible moins claire pour une classification supervisée liée à un problème métier | Non retenue |
-| CoinGecko | Finance / crypto | Prix, volume, capitalisation, variations de marché | Peut-on classifier une crypto selon son niveau de risque ou de performance ? | API gratuite, données faciles à récupérer | Sujet plus proche des séries temporelles et risque de construire une cible artificielle | Non retenue |
+| Open Food Facts | Santé alimentaire / produits alimentaires | Produits, marques, catégories, labels, pays, valeurs nutritionnelles, additifs, Nutri-Score | 1. Peut-on prédire si un produit possède une mauvaise qualité nutritionnelle ? <br> 2. Peut-on identifier les produits présentés comme sains mais ayant une mauvaise qualité nutritionnelle ? <br> 3. Peut-on analyser le lien entre labels marketing et qualité nutritionnelle réelle ? | API publique et gratuite, grand volume de données, présence du Nutri-Score, mélange de variables numériques et catégorielles | Certaines données peuvent être manquantes car la base est collaborative | Retenue |
+| USDA FoodData Central | Nutrition alimentaire | Aliments, nutriments détaillés, catégories alimentaires | 1. Peut-on classifier les aliments selon leur profil nutritionnel ? <br> 2. Peut-on détecter les aliments riches en sucre ou en graisse ? <br> 3. Peut-on comparer la qualité nutritionnelle entre catégories d’aliments ? | Données nutritionnelles détaillées et fiables | Moins adaptée aux produits commerciaux, absence de labels marketing comme “bio”, “high-protein”, “no added sugar” | Non retenue |
+| Edamam Food Database API | Alimentation / nutrition | Informations nutritionnelles sur des aliments et ingrédients | 1. Peut-on classifier les aliments selon leur apport énergétique ? <br> 2. Peut-on identifier des aliments à risque nutritionnel ? <br> 3. Peut-on prédire si un aliment est adapté à certains régimes ? | Données nutritionnelles structurées | Accès API avec quotas, moins adaptée à une collecte massive de plus de 10 000 lignes | Non retenue |
 
-### Justification du choix final
+### 3.2 Tests exploratoires réalisés
 
-Nous avons retenu l’API Open Food Facts car elle répond le mieux aux contraintes du projet. Elle fournit un grand volume de données alimentaires, un mélange de variables numériques et catégorielles, ainsi qu’une variable naturelle exploitable pour la classification : le Nutri-Score.
+Pour chaque API candidate, nous avons consulté la documentation officielle afin de vérifier :
 
-Le Nutri-Score permet de construire la cible `bad_nutrition` sans inventer directement la classe à prédire. Les produits ayant un Nutri-Score D ou E sont considérés comme de mauvaise qualité nutritionnelle, tandis que les produits A, B ou C sont considérés comme acceptables.
----
+- la disponibilité gratuite de l’API ;
+- la possibilité de récupérer un volume important de données ;
+- la présence de variables exploitables pour un modèle de classification ;
+- l’existence d’une variable cible naturelle ;
+- les limites d’utilisation, notamment les quotas et les conditions d’accès.
+
+Des tests simples d’endpoints ont été réalisés afin de vérifier le format des réponses et la richesse des données retournées.
+
+### 3.3 Choix final de l’API
+
+Nous avons retenu l’API **Open Food Facts**, car elle correspond le mieux à notre problématique métier.
+
+Cette API fournit à la fois :
+
+- des caractéristiques nutritionnelles numériques : sucres, matières grasses, sel, fibres, protéines, énergie ;
+- des caractéristiques catégorielles : catégories, pays, marques ;
+- des informations liées à l’image du produit : labels, catégories marketing ;
+- une information naturelle permettant de construire la variable cible : le Nutri-Score.
+
+Le Nutri-Score permet de créer la cible `bad_nutrition` sans inventer artificiellement la classe à prédire :
+
+```text
+bad_nutrition = 1 si nutriscore_grade ∈ {d, e}
+bad_nutrition = 0 si nutriscore_grade ∈ {a, b, c}
 
 ## 4. Source des données
 
