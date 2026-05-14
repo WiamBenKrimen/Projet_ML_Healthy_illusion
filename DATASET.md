@@ -111,9 +111,8 @@ healthy_illusion = 0  sinon
 | Nombre de colonnes | 17 |
 | Nombre de features ML utilisables | 12 |
 | Format final | CSV (UTF-8) |
-| Chemin du dataset complet | data/processed/dataset.csv |
-| Chemin de l'echantillon | data/processed/sample.csv (100 lignes) |
-| Chemin de verification | data/processed/verification_dataset.csv |
+| Chemin du dataset complet | data/dataset.csv |
+| Chemin de l'echantillon | data/sample.csv (100 lignes) |
 
 ---
 
@@ -317,8 +316,8 @@ Avec une classe minoritaire a 20%, le dataset est classe comme
 | Fichier | Description |
 |---|---|
 | data/raw/*.json | Reponses brutes sauvegardees depuis l'API |
-| data/processed/dataset.csv | Dataset final nettoye |
-| data/processed/sample.csv | Echantillon de 100 lignes |
+| data/dataset.csv | Dataset final nettoye |
+| data/sample.csv | Echantillon de 100 lignes |
 | src/data_collection.py | Script de collecte et preparation |
 
 ---

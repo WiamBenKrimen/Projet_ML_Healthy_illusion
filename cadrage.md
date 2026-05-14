@@ -25,8 +25,24 @@ Puis, dans un second temps :
 **Parmi les produits présentés comme sains, peut-on détecter ceux qui sont en réalité de mauvaise qualité nutritionnelle ?**
 
 ---
+## 3. Exploration des APIs candidates
 
-## 3. Source des données
+Avant de choisir la source finale des données, nous avons comparé plusieurs APIs publiques et gratuites afin d’identifier celle qui permet de construire un problème de classification supervisée avec une variable cible naturelle.
+
+| API candidate | Domaine | Données disponibles | Questions métier possibles | Avantages | Limites | Décision |
+|---|---|---|---|---|---|---|
+| Open Food Facts | Santé alimentaire | Produits alimentaires, catégories, labels, valeurs nutritionnelles, Nutri-Score | Peut-on prédire si un produit possède une mauvaise qualité nutritionnelle ? Peut-on identifier les produits à image saine mais mauvais nutritionnellement ? | API publique, gratuite, grand volume de données, présence du Nutri-Score comme cible naturelle | Données parfois manquantes car base collaborative | Retenue |
+| OpenLibrary | Culture / livres | Titres, auteurs, années, sujets, langues | Peut-on prédire la catégorie ou la popularité d’un livre ? | API gratuite, données nombreuses | Variable cible moins claire pour une classification supervisée liée à un problème métier | Non retenue |
+| CoinGecko | Finance / crypto | Prix, volume, capitalisation, variations de marché | Peut-on classifier une crypto selon son niveau de risque ou de performance ? | API gratuite, données faciles à récupérer | Sujet plus proche des séries temporelles et risque de construire une cible artificielle | Non retenue |
+
+### Justification du choix final
+
+Nous avons retenu l’API Open Food Facts car elle répond le mieux aux contraintes du projet. Elle fournit un grand volume de données alimentaires, un mélange de variables numériques et catégorielles, ainsi qu’une variable naturelle exploitable pour la classification : le Nutri-Score.
+
+Le Nutri-Score permet de construire la cible `bad_nutrition` sans inventer directement la classe à prédire. Les produits ayant un Nutri-Score D ou E sont considérés comme de mauvaise qualité nutritionnelle, tandis que les produits A, B ou C sont considérés comme acceptables.
+---
+
+## 4. Source des données
 
 ### API utilisée
 
@@ -54,7 +70,7 @@ fields=code,product_name,categories_tags,labels_tags,countries_tags,nutriscore_g
 
 ---
 
-## 4. Nature du problème ML
+## 5. Nature du problème ML
 
 Le projet est un problème de **classification supervisée binaire**.
 
@@ -68,7 +84,7 @@ Elle indique si le produit possède une mauvaise qualité nutritionnelle.
 
 ---
 
-## 5. Définition de la variable cible principale
+## 6. Définition de la variable cible principale
 
 La variable cible `bad_nutrition` est créée à partir du champ `nutriscore_grade` fourni par Open Food Facts.
 
@@ -93,7 +109,7 @@ Important : `nutriscore_grade` sert uniquement à créer la cible. Il ne sera pa
 
 ---
 
-## 6. Variables explicatives prévues
+## 7. Variables explicatives prévues
 
 Le modèle apprendra à prédire `bad_nutrition` à partir de caractéristiques du produit.
 
@@ -113,7 +129,7 @@ Le modèle apprendra à prédire `bad_nutrition` à partir de caractéristiques 
 
 ---
 
-## 7. Variable métier : `image_saine`
+## 8. Variable métier : `image_saine`
 
 La variable `image_saine` n’est pas la cible principale du modèle.
 
@@ -149,7 +165,7 @@ Remarque importante : tous les labels Open Food Facts ne sont pas considérés c
 
 ---
 
-## 8. Conclusion métier : `healthy_illusion`
+## 9. Conclusion métier : `healthy_illusion`
 
 La variable `healthy_illusion` est une conclusion métier obtenue après la création de `bad_nutrition` et `image_saine`.
 
@@ -171,7 +187,7 @@ Interprétation : un produit est considéré comme une illusion saine s’il est
 
 ---
 
-## 9. Objectifs métiers quantifiés
+## 10. Objectifs métiers quantifiés
 
 | Objectif métier | Critère de succès |
 |---|---|
@@ -182,7 +198,7 @@ Interprétation : un produit est considéré comme une illusion saine s’il est
 
 ---
 
-## 10. Traduction en objectifs ML
+## 11. Traduction en objectifs ML
 
 | Objectif métier | Objectif ML | Métrique principale | Seuil cible |
 |---|---|---|---|
@@ -193,7 +209,7 @@ Interprétation : un produit est considéré comme une illusion saine s’il est
 
 ---
 
-## 11. Analyse du coût métier asymétrique
+## 12. Analyse du coût métier asymétrique
 
 ### Faux négatif
 
@@ -217,7 +233,7 @@ Les faux négatifs sont plus coûteux que les faux positifs. Le projet privilég
 
 ---
 
-## 12. Métriques retenues
+## 13. Métriques retenues
 
 | Métrique | Statut | Justification |
 |---|---|---|
@@ -230,7 +246,7 @@ Les faux négatifs sont plus coûteux que les faux positifs. Le projet privilég
 
 ---
 
-## 13. Contraintes dataset à respecter
+## 14. Contraintes dataset à respecter
 
 | Critère | Exigence |
 |---|---|
@@ -242,7 +258,7 @@ Les faux négatifs sont plus coûteux que les faux positifs. Le projet privilég
 
 ---
 
-## 14. Pipeline général du projet
+## 15. Pipeline général du projet
 
 ```text
 1. Collecter les produits depuis Open Food Facts.
@@ -259,7 +275,7 @@ Les faux négatifs sont plus coûteux que les faux positifs. Le projet privilég
 
 ---
 
-## 15. Positionnement final du projet
+## 16. Positionnement final du projet
 
 Le modèle ML ne prédit pas directement la notion subjective d’illusion saine.
 

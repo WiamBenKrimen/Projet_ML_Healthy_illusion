@@ -22,9 +22,8 @@ Nouvelle conception validée :
 
 Sorties :
 - data/raw/*.json
-- data/processed/dataset.csv
-- data/processed/sample.csv
-- data/processed/verification_dataset.csv
+- data/dataset.csv
+- data/sample.csv
 """
 
 from __future__ import annotations
@@ -46,14 +45,13 @@ import requests
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+DATA_DIR = PROJECT_ROOT / "data"
 
 RAW_DIR.mkdir(parents=True, exist_ok=True)
-PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-DATASET_PATH = PROCESSED_DIR / "dataset.csv"
-SAMPLE_PATH = PROCESSED_DIR / "sample.csv"
-VERIFICATION_PATH = PROCESSED_DIR / "verification_dataset.csv"
+DATASET_PATH = DATA_DIR / "dataset.csv"
+SAMPLE_PATH = DATA_DIR / "sample.csv"
 
 BASE_URL = "https://world.openfoodfacts.org/cgi/search.pl"
 
@@ -463,20 +461,19 @@ def print_summary(df: pd.DataFrame, checks: dict[str, Any]) -> None:
     logger.info("Target bad_nutrition existe : %s", "OK" if checks["target_exists"] else "NON")
 
     if checks["overall_ok"]:
-        logger.info("✅ DATASET CONFORME AUX CONTRAINTES PRINCIPALES.")
+        logger.info(" DATASET CONFORME AUX CONTRAINTES PRINCIPALES.")
     else:
-        logger.warning("⚠️ DATASET PAS ENCORE CONFORME.")
+        logger.warning(" DATASET PAS ENCORE CONFORME.")
         logger.warning("Si lignes < 10 000 : augmente TARGET_RAW_PRODUCTS ou MAX_PAGES_PER_CATEGORY.")
         logger.warning("Si ratio non conforme : ajuste COLLECTION_CATEGORIES, sans modifier les labels.")
 
 
-def export_dataset(df: pd.DataFrame, checks: dict[str, Any]) -> None:
+def export_dataset(df: pd.DataFrame) -> None:
     df.to_csv(DATASET_PATH, index=False, encoding="utf-8")
     df.sample(n=min(100, len(df)), random_state=42).to_csv(SAMPLE_PATH, index=False, encoding="utf-8")
-    pd.DataFrame([checks]).to_csv(VERIFICATION_PATH, index=False, encoding="utf-8")
+
     logger.info("Dataset sauvegardé: %s", DATASET_PATH)
     logger.info("Sample sauvegardé: %s", SAMPLE_PATH)
-    logger.info("Vérification sauvegardée: %s", VERIFICATION_PATH)
 
 
 def main() -> None:
@@ -492,7 +489,7 @@ def main() -> None:
     df = reduce_to_target_rows_preserve_distribution(df)
     checks = check_conformity(df)
     print_summary(df, checks)
-    export_dataset(df, checks)
+    export_dataset(df)
     logger.info("Fin du script.")
 
 
