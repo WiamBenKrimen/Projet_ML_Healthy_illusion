@@ -50,8 +50,6 @@ Pour chaque API candidate, nous avons consulté la documentation officielle afin
 - l’existence d’une variable cible naturelle ;
 - les limites d’utilisation, notamment les quotas et les conditions d’accès.
 
-Des tests simples d’endpoints ont été réalisés afin de vérifier le format des réponses et la richesse des données retournées.
-
 ### 3.3 Choix final de l’API
 
 Nous avons retenu l’API **Open Food Facts**, car elle correspond le mieux à notre problématique métier.
@@ -138,21 +136,18 @@ Interprétation :
 | D | 1 | Mauvaise qualité nutritionnelle |
 | E | 1 | Mauvaise qualité nutritionnelle |
 
-Important : `nutriscore_grade` sert uniquement à créer la cible. Il ne sera pas utilisé comme variable d’entrée du modèle afin d’éviter le data leakage.
+### Remarque méthodologique sur le Nutri-Score
 
-Remarque opérationnelle : selon la sortie du script de collecte, le fichier `data/dataset.csv`
-peut contenir la colonne `nutriscore_grade` pour des raisons de traçabilité. Cela ne
-change pas la règle métier : avant l'entraînement, supprimer explicitement cette
-colonne du jeu de données utilisé pour entraîner les modèles. Exemple rapide en
-pandas :
+La colonne `nutriscore_grade` provient directement de l’API Open Food Facts. Elle est utilisée uniquement pour construire la variable cible `bad_nutrition` selon la règle suivante :
 
-```
-df_train = df.drop(columns=["nutriscore_grade"], errors="ignore")
-```
+- Nutri-Score A, B ou C → `bad_nutrition = 0`
+- Nutri-Score D ou E → `bad_nutrition = 1`
 
-Si une copie complète est nécessaire pour audit, conserver `data/dataset_with_nutriscore.csv`
-et utiliser `data/dataset.csv` (sans la colonne) pour l'entraînement.
+Nous conservons `nutriscore_grade` dans le dataset afin de garder une trace claire de la construction de la cible et de faciliter la vérification du dataset.
 
+Cependant, cette colonne ne sera pas utilisée comme variable d’entrée lors de l’entraînement des modèles. En effet, comme elle sert directement à construire la cible, l’utiliser comme feature donnerait indirectement la réponse au modèle et fausserait l’évaluation.
+
+Ainsi, lors de la phase d’entraînement, les variables utilisées seront uniquement les caractéristiques descriptives du produit : valeurs nutritionnelles, nombre d’additifs, catégorie principale, pays, labels et variable `image_saine`.
 ---
 
 ## 7. Variables explicatives prévues
@@ -208,7 +203,7 @@ organic, bio, no-added-sugar, low-fat, reduced-fat,
 high-protein, source-of-fibre, rich-in-fibre, natural
 ```
 
-Remarque importante : tous les labels Open Food Facts ne sont pas considérés comme des labels santé. Par exemple, `halal`, `kosher`, `fair-trade`, `recyclable` ou `made-in-france` ne sont pas utilisés comme indicateurs d’image saine.
+Remarque importante : tous les labels Open Food Facts ne sont pas considérés comme des labels santé. Les labels d'origine ou purement logistiques, par exemple `halal`, `kosher`, `fair-trade`, `recyclable` ou les labels `made-in-*`, ne sont pas utilisés comme indicateurs d’image saine.
 
 ---
 

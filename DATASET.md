@@ -169,25 +169,20 @@ des valeurs nutritionnelles reelles. La variable bad_nutrition en est une derive
 binaire directe, ce qui garantit une cible fiable et naturellement presente dans
 les donnees.
 
-### ATTENTION - Data leakage
+### Remarque sur l’utilisation du Nutri-Score
 
-La colonne nutriscore_grade NE DOIT PAS etre utilisee comme feature d'entree du modele
-car elle sert a construire la variable cible. L'inclure provoquerait une fuite de
-donnees (data leakage) et invaliderait l'evaluation du modele.
+Dans notre dataset, la colonne `nutriscore_grade` est conservée pour assurer la traçabilité de la variable cible. En effet, cette information provient directement de l’API Open Food Facts et elle nous permet de construire la cible `bad_nutrition`.
 
-Remarque opérationnelle : le fichier `data/dataset.csv` peut contenir la colonne
-`nutriscore_grade` pour traçabilité ou archivage. CELA N'IMPLIQUE PAS qu'elle doit
-être utilisée pour l'entraînement. Avant d'entraîner un modèle, supprimer explicitement
-les colonnes sources de la cible (par exemple `nutriscore_grade`) depuis le jeu
-de données utilisé pour l'entraînement. Exemple rapide :
+La règle utilisée est la suivante :
 
-```
-df_train = df.drop(columns=["nutriscore_grade"], errors="ignore")
-```
+- Nutri-Score A, B ou C → `bad_nutrition = 0`
+- Nutri-Score D ou E → `bad_nutrition = 1`
 
-Si vous souhaitez conserver une copie complète pour audit, sauvegardez-la sous
-`data/dataset_with_nutriscore.csv` et utilisez `data/dataset.csv` (sans la colonne)
-pour l'entraînement.
+Cependant, cette colonne ne devra pas être utilisée comme variable d’entrée lors de l’entraînement du modèle. Comme elle sert directement à créer la cible, l’utiliser parmi les features donnerait indirectement la réponse au modèle. Cela fausserait l’évaluation et provoquerait un problème de fuite de données, appelé *data leakage*.
+
+Ainsi, pour la phase d’entraînement, nous utiliserons uniquement les variables descriptives du produit, comme les sucres, les graisses, le sel, les protéines, les fibres, l’énergie, le nombre d’additifs, la catégorie principale, le pays et les variables métier comme `image_saine`.
+
+La colonne `nutriscore_grade` reste donc présente dans le dataset pour l’explication et la vérification, mais elle sera explicitement exclue du jeu de variables utilisé par le modèle.
 
 ---
 
@@ -226,10 +221,10 @@ high-protein, source-of-fibre, rich-in-fibre, natural
 
 ### Labels exclus
 
-Les labels suivants ne sont pas considers comme indicateurs d'image saine :
+Les labels d'origine ou purement logistiques ne sont pas considers comme indicateurs d'image saine :
 
 ```
-halal, kosher, fair-trade, recyclable, made-in-france
+halal, kosher, fair-trade, recyclable, made-in-*
 ```
 
 ---
