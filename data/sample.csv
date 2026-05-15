@@ -1,0 +1,101 @@
+code,product_name,brands,main_category,country,sugars_100g,fat_100g,saturated_fat_100g,salt_100g,fiber_100g,proteins_100g,energy_kcal_100g,additives_count,has_labels,image_saine,nutriscore_grade,bad_nutrition,healthy_illusion
+3564700459232,Thon Entier ALBACORE au Naturel,"Marque Repère, Pêche Océan",seafood,france,0.0,0.8,0.2,1.0,0.0,24.0,109.0,0,1,0,a,0,0
+0856088003736,Nut Granola,Seven Sundays,plant-based-foods-and-beverages,united-states,3.99,15.0,5.01,0.0,3.99,5.01,566.666666666667,0,1,1,c,0,0
+3155253020644,Kéfir,LACTEL,beverages,france,3.6,1.5,1.1,0.1,1.9,3.3,42.0,0,0,1,b,0,0
+6111242926035,frut,MARRAKECH,beverages-and-beverages-preparations,morocco,6.9,0.0,0.0,0.00025,1.9,0.0,32.0,8,1,1,e,1,1
+5400141243307,Couscous precuit,Boni,plant-based-foods-and-beverages,belgium,3.0,2.0,0.40000000596046,0.050000000745058,1.9,13.0,369.0,0,1,1,a,0,0
+3250391249831,Bifidus vanille 12x125g,"Les Mousquetaires, Pâturages, Sélection Intermarché",dairies,france,12.0,2.9,2.0,0.09,0.0,3.5,92.1,0,1,1,c,0,0
+8001310811050,Pesto alla calabrese poivrons et ricotta,Polli,condiments,france,5.9,27.0,4.4,2.8,1.5,3.8,301.0,1,0,0,e,1,0
+8715700116631,Tomato Ketchup,Heinz,condiments,germany,22.8,0.1,0.1,1.77,1.9,1.2,102.0,0,1,0,d,1,0
+3083681095326,Petits pois,Cassegrain,plant-based-foods-and-beverages,france,5.8,0.6,0.1,0.66,1.9,3.1,59.0,0,0,1,a,0,0
+3329770087705,Brassé fraise,Yoplait,dairies,france,9.6,2.9,1.9,0.14,1.9,3.6,85.0,0,1,1,c,0,0
+0082592660640,Mighty Mango Machine,Naked,beverages-and-beverages-preparations,united-states,11.25,0.0,0.0,0.015625,1.25,0.416666666666667,58.3333333333333,1,1,1,e,1,1
+3596710548842,Muesli croustillant noix,Auchan,plant-based-foods-and-beverages,france,18.0,17.0,2.0,0.16,7.4,11.0,457.0,1,1,1,c,0,0
+3350031686450,Pétales riz & blé complet aux copeaux de chocolat,Monoprix,plant-based-foods-and-beverages,france,21.0,7.9,4.2,0.7,5.8,7.9,414.0,2,1,1,d,1,1
+4006599000731,Yume Nishiki Super Premium Short Grain Rice,Yume Nishiki - Original Japanese Variety,plant-based-foods-and-beverages,france,0.5,1.2,0.2,0.01,0.8,5.7,345.0,0,0,1,b,0,0
+3451790397868,Elle & vire desserts lactes fruits cerise,Elle & Vire,dairies,belgium,12.8,2.3,1.6,0.1,0.0,2.2,76.0,2,1,1,c,0,0
+3256222113036,Petits pois très fins - Boîte de 280g net égoutté,U,plant-based-foods-and-beverages,france,2.6,0.8,0.2,0.45,5.8,5.1,82.0,0,1,1,b,0,0
+8032942610100,Couscous Medio,Martino,plant-based-foods-and-beverages,germany,2.0,1.6,0.2,0.01,3.3,13.0,360.0,0,1,1,a,0,0
+20214456,Green Lentils,Campo Largo,plant-based-foods-and-beverages,finland,4.2,1.6,0.3,0.02,22.0,24.0,310.0,0,0,1,a,0,0
+3256224701170,Brocolis sachet 900g,U,plant-based-foods-and-beverages,france,1.5,0.5,0.1,0.06,3.0,3.1,29.0,0,1,1,a,0,0
+3073190101250,Spaghetti,Lustucru,plant-based-foods-and-beverages,france,6.0,3.5,0.8,0.064,3.0,13.5,372.0,0,1,1,a,0,0
+8001440121265,Ceci Tetrapak Ca' Dell'orto,"Ca' dell'orto, Conserve Italia",plant-based-foods-and-beverages,italy,0.7,2.2,0.3,0.8,1.9,6.7,125.0,1,0,1,b,0,0
+5038862234931,"Smoothie ananas, fraise & pomme",Innocent,plant-based-foods-and-beverages,france,11.0,0.5,0.1,0.01,1.0,0.6,52.0,0,1,1,e,1,1
+3256222113593,Haricots verts extra-fins - Boîte de 220g net égoutté,U,plant-based-foods-and-beverages,france,0.5,0.5,0.1,0.55,3.4,1.3,20.0,0,1,1,a,0,0
+4014500506838,Zottis Fruit Yoghurt,Zott,dairies,france,13.9,0.1,0.0,0.17,1.9,2.1,76.0,1,1,1,c,0,0
+3564706539273,Pois chiches,"Marque Repère, Notre Jardin",plant-based-foods-and-beverages,france,0.8,2.0,0.3,0.7,6.0,6.0,123.0,0,1,1,a,0,0
+3410280010762,Riz long,Top budget,plant-based-foods-and-beverages,france,0.5,0.7,0.1,0.01,1.4,7.3,349.0,0,1,1,b,0,0
+0073472001202,Flourless Sprouted Grain Bread,Food For Life,plant-based-foods-and-beverages,spain,0.0,0.5,0.0,0.1875,3.0,4.0,235.294117647059,0,1,1,b,0,0
+4056489509943,,"Vemondo,Lidl",beverages-and-beverages-preparations,ireland,1.0,3.8,0.5,0.000625,0.0,6.8,73.0,2,1,1,b,0,0
+4056489565673,Cous Cous,Lidl,plant-based-foods-and-beverages,united-kingdom,2.1,1.8,0.4,0.0,4.2,12.0,349.0,0,0,1,a,0,0
+3600900022002,Couscous parfumé aux épices douces,Tipiak,plant-based-foods-and-beverages,france,1.5,1.3,0.2,0.67,2.4,5.7,162.0,0,0,1,c,0,0
+20936600,DARK CHOCOLATE ALMOND & ORANGE,J. D. GROSS,snacks,france,41.4,39.4,22.0,0.01,6.7,6.0,576.0,2,1,0,e,1,0
+3564700576359,Sauce napolitaine,"Marque Repère, Turini",condiments,france,5.2,1.7,0.3,1.0,2.6,1.4,51.7,1,1,0,a,0,0
+0038000198410,Kellogg's All-Bran Original imp,Kellogg’s,plant-based-foods-and-beverages,united-states,21.9512195121951,4.8780487804878,0.0,0.58,29.2682926829268,12.1951219512195,292.682926829268,0,1,1,c,0,0
+8435257070216,Yaos coco,Nestlé,dairies,spain,13.1,8.7,6.0,0.13,0.5,2.4,155.0,0,0,1,c,0,0
+00335078,Lentilles corail lait de coco et pointe de curry,Liebig,plant-based-foods-and-beverages,france,1.8,0.9,0.8,0.65,1.3,1.6,39.0,0,1,1,d,1,1
+4067796000306,Schoko Crunchy,dmBio,plant-based-foods-and-beverages,france,18.0,15.0,3.1,0.2,7.6,9.3,415.0,1,1,1,c,0,0
+8480000183132,Filetes de caballa del sur en tomate,Hacendado,seafood,spain,0.4,3.5,0.7,0.87,1.9,17.0,115.0,0,1,0,a,0,0
+3760091725301,Chocolat noir 98 % Équateur,Éthiquable,snacks,france,1.0,54.0,32.0,0.0,14.0,14.0,620.0,0,1,1,d,1,1
+0727156699291,Persian Hashemi Rice,Satuyar,plant-based-foods-and-beverages,germany,0.1,0.7,0.2,0.02,1.9,7.0,365.0,0,0,1,b,0,0
+3560070309238,Nectar de Goyave,Selection,beverages-and-beverages-preparations,france,9.5,0.0,0.0,0.03,0.8,0.5,43.0,2,1,1,e,1,1
+3111902100044,Céréales muesli croustillant superfruits Bio,Charles Vignon,plant-based-foods-and-beverages,france,19.0,14.0,1.4,0.01,5.7,7.5,434.0,0,1,1,c,0,0
+7501040095160,Greek with no added,Yoplait,dairies,mexico,6.8,1.9,1.19,0.2,0.0,7.1,73.0,0,1,1,b,0,0
+8480000213365,Bifidus Natural,Hacendado,dairies,spain,8.8,10.3,5.5,0.12,1.9,6.0,106.0,0,1,1,c,0,0
+7310240651287,Felix tomaattiketchup,Felix,condiments,finland,17.0,0.0,0.0,2.2,1.9,1.1,80.0,0,0,0,d,1,0
+3266140061166,Ravioles emmental BIO,Comptoir du Pastier,plant-based-foods-and-beverages,france,1.4,11.0,6.7,1.4,1.1,13.0,285.0,0,1,1,d,1,1
+0847025034029,Couscous au curcuma sans gluten,,plant-based-foods-and-beverages,canada,0.0,3.7778,0.0,0.0,0.3778,2.7111,128.8889,0,1,1,a,0,0
+3033492061454,Skyr L'onctueux,Danone,dairies,france,8.7,0.1,0.1,0.0002,1.9,7.9,71.0,0,0,1,a,0,0
+3564706614871,Céréales fourrées,P'tit Déli,plant-based-foods-and-beverages,france,28.0,17.0,1.6,0.56,5.1,6.9,462.0,3,1,1,d,1,1
+5059319016450,Crunchy Oat Granola Mixed Berries,K,plant-based-foods-and-beverages,united-kingdom,11.0,14.0,1.9,0.01,10.0,9.3,451.111111111111,1,1,1,b,0,0
+20383701,,Saskia,beverages,netherlands,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0,0,a,0,0
+7613033779909,Tomate frito,Solís,plant-based-foods-and-beverages,france,7.4,3.3,0.4,1.1,1.9,1.4,74.0,0,1,1,c,0,0
+4066447663075,Fruchtringe,dmBio,plant-based-foods-and-beverages,germany,12.0,3.5,0.6,0.02,7.8,8.3,348.0,0,1,1,a,0,0
+20527952,Arroz basmati,Lidl,plant-based-foods-and-beverages,spain,0.6,0.8,0.2,0.0,1.9,7.2,348.0,0,0,1,b,0,0
+5038862160506,Jus d'orange avec pulpe,Innocent,beverages-and-beverages-preparations,france,13.0,0.0,0.0,0.0,1.3,1.1,64.0,0,1,1,e,1,1
+8480000868091,Cocktail Natural,Hacendado,plant-based-foods-and-beverages,portugal,5.2,58.8,20.5,0.0,9.0,20.4,651.0,0,1,1,c,0,0
+3564709021416,Sardines,Nos régions ont du talent,seafood,france,0.5,11.0,4.0,0.8,0.5,23.0,194.0,0,1,0,b,0,0
+3263670344912,Thon miettes généreuse à l'huile d'olive vierge extra,Le Savoureux,seafood,france,0.0,25.0,3.7,1.0,1.9,20.0,305.0,0,0,0,c,0,0
+3023290063873,Skyr mangue passion,siggi's,dairies,france,8.28571428571429,1.92857142857143,1.42857142857143,0.0,0.0,8.92857142857143,87.8571428571429,0,1,1,b,0,0
+5900020013927,Chocapic,Nestlé,plant-based-foods-and-beverages,bulgaria,22.4,4.8,1.3,0.1975,7.7,8.9,389.0,1,1,1,c,0,0
+20416690,Greek Style Natural Light 2% fat,Milbona,dairies,belgium,4.0,2.0,1.4,0.000325,1.9,6.0,58.4,0,1,1,a,0,0
+3700663000474,L'incroyable Ketchup,Quintesens,condiments,belgium,11.5,1.5,0.2,1.5,2.3,1.7,79.0,0,1,1,c,0,0
+3083680652094,Lentilles préparées,Cassegrain,plant-based-foods-and-beverages,france,0.5,0.5,0.1,0.76,3.1,6.6,93.0,1,1,1,b,0,0
+5018374566867,Sultana Bran,Tesco,plant-based-foods-and-beverages,france,21.5,2.1,0.4,0.45,12.3,10.3,346.0,0,1,1,c,0,0
+3256224235781,Yaourt nature à la grecque 4x150g,Magasins U,dairies,france,3.5,8.5,5.7,0.12,0.5,2.9,102.0,0,1,1,c,0,0
+3700490809448,Jus de pomme 100% non filtré,"C'est qui le patron ?!, La marque du consommateur, Carrefour",beverages-and-beverages-preparations,france,9.8,0.5,0.0,0.01,0.5,0.5,44.0,0,1,1,c,0,0
+8435185100955,Orangina 50cl,Orangina,plant-based-foods-and-beverages,cote-d-ivoire,10.1,0.0,0.0,0.0,0.0,0.1,43.0,2,1,1,e,1,1
+4056489601593,High proteïne Peach&amp; Passion Fruit,Milbona,dairies,bulgaria,3.2,0.5,0.4,0.14,0.2,12.4,69.0,3,1,1,a,0,0
+9002515600530,Cocktail Tropical Multivitaminé,Pago,plant-based-foods-and-beverages,france,11.0,0.5,0.1,0.0,1.9,0.5,50.5,0,1,1,c,0,0
+3250391010462,Purée de brocolis 750g,Saint Eloi,plant-based-foods-and-beverages,france,1.4,1.1,0.8,0.61,2.7,2.1,34.0,0,1,1,a,0,0
+6111126003937,Yrt les plisirs de  CHERGU,Chergui,dairies,morocco,7.5,3.5,2.54,0.25,1.9,3.07,88.0,0,1,1,c,0,0
+8410261775050,Nectar de Melocotón,rostoy,beverages-and-beverages-preparations,morocco,0.0,0.0,0.0,1.3,1.9,0.3,47.0,1,0,1,c,0,0
+3454840007120,Yaourt bio nature sucré,Yogourmand,dairies,france,11.3,3.3,2.0,0.11,1.9,3.1,87.0,0,1,1,c,0,0
+3273220540961,Yaourt bio au lait de chèvre nature,Vrai,dairies,france,3.5,4.9,3.8,0.07,1.9,4.7,77.0,0,1,1,c,0,0
+3019089044475,Miettes de thon,Petit Navire,seafood,france,0.0,16.0,2.3,1.0,1.9,23.0,236.0,0,1,0,b,0,0
+3564700002841,Jus d'orange pour jus,"Marque Repère, Jafaden",plant-based-foods-and-beverages,france,9.2,0.5,0.1,0.01,0.5,0.5,45.0,0,1,1,c,0,0
+3760091728906,Riz Jasmin Cambodge,Ethiquable,plant-based-foods-and-beverages,france,0.30000001192093,0.69999998807907,0.30000001192093,0.029999999329448,1.9,5.9000000953674,354.0,0,1,1,c,0,0
+5902884465249,Muesli caramel,One Day More,plant-based-foods-and-beverages,france,21.3,6.1,1.6,0.81,8.5,9.3,381.0,2,0,1,c,0,0
+3111900350908,Soja et chocolat Protéiné,Favrichon,plant-based-foods-and-beverages,belgium,7.2,9.9,3.4,0.13,9.6,43.0,409.0,0,1,1,c,0,0
+3572420000399,Croc' Tout Choc à la pâte à tartiner,Lucien Georgelin,plant-based-foods-and-beverages,france,32.0,16.0,5.0,0.5,7.0,7.5,456.0,2,1,1,d,1,1
+3760192490566,100% pur jus de Grenade,Nature Boisson,plant-based-foods-and-beverages,france,12.0,0.0,0.4,0.03,1.9,0.7,56.0,0,1,1,d,1,1
+4056489007180,pain de mie grandes tranches spécial sandwich complet,Maître Jean Pierre,plant-based-foods-and-beverages,france,5.0,4.5,0.5,1.0,6.3,8.3,258.666666666667,1,1,1,b,0,0
+3017800503409,Petits pois Carottes HVE Bien cultivés d'aucy 250g,D'aucy,plant-based-foods-and-beverages,france,3.0,0.0,0.0,0.5,4.3,4.0,58.0,0,1,1,a,0,0
+3111900350717,Muesli simplement bienveillant,J FAVRICHON,plant-based-foods-and-beverages,belgium,12.0,12.0,1.5,0.02,12.0,14.0,407.0,0,1,1,a,0,0
+7501086801015,Agua purificada sin sodio,Epura,beverages,mexico,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,1,0,b,0,0
+8690635151424,Tat kechup,Tat,condiments,france,23.0,0.2,0.1,1.4,1.9,1.3,128.0,0,0,0,d,1,0
+3155251204343,Tartine & cuisson doux à tartiner et à cuire,Primevere,plant-based-foods-and-beverages,france,0.0,63.0,17.0,0.35,0.0,0.0,567.0,4,1,1,c,0,0
+4088600284910,Everyday Essentials Fat Free Natural Yogurt,"Everyday Essentials, Aldi",dairies,ireland,7.2,0.5,0.4,0.19,0.0,5.0,59.0,0,1,1,a,0,0
+3456300002430,Pur jus citron vert,"Jardin bio,Lea Nature",beverages-and-beverages-preparations,france,1.7,0.8,0.0,0.01,0.0,0.5,35.0,0,1,1,b,0,0
+3168930010906,Cruesli Chocolat noir,Quaker,plant-based-foods-and-beverages,belgium,16.0,19.0,4.9,0.48,10.0,8.1,455.0,3,1,1,c,0,0
+8410500031848,yopro proteína fresa,Danone,dairies,spain,3.1,0.1,0.1,0.0875,1.9,9.4,55.0,0,0,1,a,0,0
+3564700005194,Haricots verts extra-fins,Notre Jardin,plant-based-foods-and-beverages,france,1.0,0.5,0.0,1.0,2.5,1.5,23.1835564053537,0,1,1,a,0,0
+4001513007704,"Gerolsteiner Medium 1,5 Liter",Gerolsteiner,beverages-and-beverages-preparations,germany,0.0,0.0,0.0,0.03,1.9,0.0,0.0,0,0,0,a,0,0
+4388810057657,Mineralwasser,"Rewe, ja!",beverages-and-beverages-preparations,germany,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0,0,a,0,0
+8715700117140,Zero Tomaten Ketchup,HEINZ,condiments,austria,5.0,0.1,0.0,0.6,0.0,1.6,40.0,2,1,0,b,0,0
+3760294960202,Haricots verts extra fins,Elibio,plant-based-foods-and-beverages,france,0.5,0.3,0.1,0.4,1.9,1.3,24.0,0,1,1,a,0,0
+3480341000704,Carré Frais 0% Ail & Fines Herbes,Elle & Vire,dairies,france,2.9,0.3,0.2,1.3,1.9,16.0,85.0,0,1,1,b,0,0
+3273220504055,Fromage blanc,Vrai,dairies,france,3.7,3.6,2.4,0.1,1.9,7.2,76.0,0,1,1,b,0,0
+4088600289137,Classic Basmati Rice,Worldwide Foods,plant-based-foods-and-beverages,united-kingdom,0.106382978723404,0.691489361702128,0.159574468085106,2.65957446808511e-05,0.585106382978724,2.81914893617021,124.468085106383,0,0,1,b,0,0
+3701002411661,,Le Clos des Vaches,dairies,france,9.6,2.56,1.68,0.086,1.9,3.36,83.2,0,0,1,c,0,0
+3263670166316,Sardines à l'Ancienne Label rouge,Connétable,seafood,france,0.0,15.0,3.3,1.025,0.0,22.0,222.0,0,1,0,c,0,0

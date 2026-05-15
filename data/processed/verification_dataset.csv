@@ -1,2 +1,0 @@
-rows,columns,feature_count,minority_ratio_bad_nutrition_percent,rows_ok,feature_count_ok,minority_ratio_ok,target_exists,overall_ok
-10000,18,12,36.6,True,True,False,True,False

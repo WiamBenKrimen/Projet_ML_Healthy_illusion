@@ -1,5 +1,5 @@
 {
-  "count": 128520,
+  "count": 128849,
   "page": 2,
   "page_count": 100,
   "page_size": 100,
@@ -2416,7 +2416,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "Caprice Des Dieux, Savencia",
+      "brands": "Caprice des dieux",
       "categories_tags": [
         "en:dairies",
         "en:fermented-foods",
@@ -2513,7 +2513,6 @@
       },
       "nutriscore_grade": "d",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "d",
       "product_name": "Caprice des Dieux"
@@ -4928,7 +4927,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "Carrefour Extra",
+      "brands": "Carrefour",
       "categories_tags": [
         "en:dairies",
         "en:fermented-foods",
@@ -7582,7 +7581,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "c",
-      "product_name": "Queso Blanco Pasteurizado Light"
+      "product_name": "Queso blanco pasteurizado"
     },
     {
       "additives_n": 0,
@@ -7936,11 +7935,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 3.7,
         "energy": 229,
-        "energy-kcal": 229,
-        "energy-kcal_100g": 229,
-        "energy-kcal_serving": 366,
+        "energy-kcal": 53.75,
+        "energy-kcal_100g": 53.75,
+        "energy-kcal_serving": 86,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 229,
+        "energy-kcal_value": 53.75,
         "energy-kj": 229,
         "energy-kj_100g": 229,
         "energy-kj_serving": 366,
@@ -7957,11 +7956,11 @@
         "fat_value": 0.1,
         "fruits-vegetables-legumes-estimate-from-ingredients_100g": 5,
         "fruits-vegetables-nuts-estimate-from-ingredients_100g": 5,
-        "magnesium": 0.0535,
-        "magnesium_100g": 0.0535,
-        "magnesium_serving": 0.0856,
+        "magnesium": 0.03125,
+        "magnesium_100g": 0.03125,
+        "magnesium_serving": 0.05,
         "magnesium_unit": "g",
-        "magnesium_value": 0.0535,
+        "magnesium_value": 0.03125,
         "nova-group": 4,
         "nova-group_100g": 4,
         "nova-group_serving": 4,

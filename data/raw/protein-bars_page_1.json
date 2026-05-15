@@ -1,5 +1,5 @@
 {
-  "count": 5416,
+  "count": 5448,
   "page": 1,
   "page_count": 100,
   "page_size": 100,
@@ -1205,12 +1205,14 @@
       "countries_tags": [
         "en:bulgaria",
         "en:france",
+        "en:germany",
         "en:latvia",
         "en:lithuania",
         "en:portugal",
         "en:romania"
       ],
       "labels_tags": [
+        "en:no-added-sugar",
         "en:rainforest-alliance"
       ],
       "nutriments": {
@@ -1419,7 +1421,7 @@
         "en:e955",
         "en:e965"
       ],
-      "brands": "FULFIL",
+      "brands": "Fulfil",
       "categories_tags": [
         "en:snacks",
         "en:sweet-snacks",
@@ -1460,11 +1462,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 29,
         "energy": 1547,
-        "energy-kcal": 354.545454545455,
-        "energy-kcal_100g": 354.545454545455,
-        "energy-kcal_serving": 195,
+        "energy-kcal": 371.545280723101,
+        "energy-kcal_100g": 371.545280723101,
+        "energy-kcal_serving": 204,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 354.545454545455,
+        "energy-kcal_value": 371.545280723101,
         "energy-kj": 1547,
         "energy-kj_100g": 1547,
         "energy-kj_serving": 851,
@@ -1577,7 +1579,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "FULFIL CUSTO CIOCCOLATO & CARAMELLO SALATO VITAMIN & PROTEIN BAR"
+      "product_name": "Vitamin & Protein Bar"
     },
     {
       "additives_n": 4,
@@ -2160,11 +2162,11 @@
         "copper_unit": "g",
         "copper_value": 0,
         "energy": 1607,
-        "energy-kcal": 386.666666666667,
-        "energy-kcal_100g": 386.666666666667,
-        "energy-kcal_serving": 116,
+        "energy-kcal": 384.002549394518,
+        "energy-kcal_100g": 384.002549394518,
+        "energy-kcal_serving": 115,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 386.666666666667,
+        "energy-kcal_value": 384.002549394518,
         "energy-kj": 1607,
         "energy-kj_100g": 1607,
         "energy-kj_serving": 482,
@@ -2196,11 +2198,11 @@
         "magnesium_serving": 0,
         "magnesium_unit": "g",
         "magnesium_value": 0,
-        "manganese": 0.0017,
-        "manganese_100g": 0.0017,
-        "manganese_serving": 0.00051,
+        "manganese": 0.00017,
+        "manganese_100g": 0.00017,
+        "manganese_serving": 5.1e-05,
         "manganese_unit": "g",
-        "manganese_value": 0.0017,
+        "manganese_value": 0.00017,
         "nova-group": 4,
         "nova-group_100g": 4,
         "nova-group_serving": 4,
@@ -2613,7 +2615,7 @@
         "en:e322",
         "en:e965"
       ],
-      "brands": "Pilos",
+      "brands": "Lidl",
       "categories_tags": [
         "en:dairies",
         "en:fermented-foods",
@@ -2639,7 +2641,9 @@
         "en:lithuania"
       ],
       "labels_tags": [
+        "en:source-of-proteins",
         "en:sustainable-farming",
+        "en:high-proteins",
         "en:nutriscore",
         "en:nutriscore-grade-c",
         "en:nutriscore-grade-d",
@@ -2659,11 +2663,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 16,
         "energy": 1307,
-        "energy-kcal": 310,
-        "energy-kcal_100g": 310,
-        "energy-kcal_serving": 124,
+        "energy-kcal": 312.5,
+        "energy-kcal_100g": 312.5,
+        "energy-kcal_serving": 125,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 310,
+        "energy-kcal_value": 312.5,
         "energy-kj": 1307,
         "energy-kj_100g": 1307,
         "energy-kj_serving": 523,
@@ -2862,7 +2866,7 @@
         "en:e955",
         "en:e965"
       ],
-      "brands": "Lidl,Protein Bar",
+      "brands": "SportyFeel",
       "categories_tags": [
         "en:snacks",
         "en:sweet-snacks",
@@ -2888,30 +2892,37 @@
         "added-sugars": 0,
         "added-sugars_100g": 0,
         "added-sugars_modifier": "~",
+        "added-sugars_serving": 0,
         "added-sugars_unit": "g",
         "added-sugars_value": 0,
         "carbohydrates": 37,
         "carbohydrates_100g": 37,
+        "carbohydrates_serving": 18.5,
         "carbohydrates_unit": "g",
         "carbohydrates_value": 37,
         "energy": 1543,
         "energy-kcal": 369,
         "energy-kcal_100g": 369,
+        "energy-kcal_serving": 184,
         "energy-kcal_unit": "kcal",
         "energy-kcal_value": 369,
         "energy-kj": 1543,
         "energy-kj_100g": 1543,
+        "energy-kj_serving": 772,
         "energy-kj_unit": "kJ",
         "energy-kj_value": 1543,
         "energy_100g": 1543,
+        "energy_serving": 772,
         "energy_unit": "kJ",
         "energy_value": 1543,
         "fat": 16,
         "fat_100g": 16,
+        "fat_serving": 8,
         "fat_unit": "g",
         "fat_value": 16,
         "fiber": 0.39,
         "fiber_100g": 0.39,
+        "fiber_serving": 0.195,
         "fiber_unit": "g",
         "fiber_value": 0.39,
         "fruits-vegetables-legumes-estimate-from-ingredients_100g": 0,
@@ -2923,27 +2934,33 @@
         "nova-group_value": 4,
         "polyols": 32,
         "polyols_100g": 32,
+        "polyols_serving": 16,
         "polyols_unit": "g",
         "polyols_value": 32,
         "proteins": 32,
         "proteins_100g": 32,
+        "proteins_serving": 16,
         "proteins_unit": "g",
         "proteins_value": 32,
         "salt": 0.629,
         "salt_100g": 0.629,
+        "salt_serving": 0.315,
         "salt_unit": "g",
         "salt_value": 0.629,
         "saturated-fat": 9.5,
         "saturated-fat_100g": 9.5,
+        "saturated-fat_serving": 4.75,
         "saturated-fat_unit": "g",
         "saturated-fat_value": 9.5,
         "sodium": 0.2516,
         "sodium_100g": 0.2516,
         "sodium_modifier": "~",
+        "sodium_serving": 0.126,
         "sodium_unit": "g",
         "sodium_value": 0.2516,
         "sugars": 3.4,
         "sugars_100g": 3.4,
+        "sugars_serving": 1.7,
         "sugars_unit": "g",
         "sugars_value": 3.4
       },
@@ -2951,8 +2968,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Chrupiący baton proteinowy o smaku malinowym",
-      "serving_quantity": null
+      "product_name": "Chrupiący baton proteinowy o smaku malinowym"
     },
     {
       "additives_n": 3,
@@ -4061,11 +4077,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 27.5,
         "energy": 2032.25,
-        "energy-kcal": 421.428571428571,
-        "energy-kcal_100g": 421.428571428571,
-        "energy-kcal_serving": 169,
+        "energy-kcal": 271.442228899207,
+        "energy-kcal_100g": 271.442228899207,
+        "energy-kcal_serving": 109,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 421.428571428571,
+        "energy-kcal_value": 271.442228899207,
         "energy-kj": 2032.25,
         "energy-kj_100g": 2032.25,
         "energy-kj_modifier": "~",
@@ -4124,7 +4140,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Protein Bar"
+      "product_name": "Protein Peanut & Chocolate"
     },
     {
       "brands": "Nature Valley",
@@ -4988,7 +5004,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "CLIF BAR",
+      "brands": "Clif Bar",
       "categories_tags": [
         "en:plant-based-foods-and-beverages",
         "en:plant-based-foods",
@@ -5041,11 +5057,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 53,
         "energy": 1633,
-        "energy-kcal": 397.058823529412,
-        "energy-kcal_100g": 397.058823529412,
-        "energy-kcal_serving": 270,
+        "energy-kcal": 388,
+        "energy-kcal_100g": 388,
+        "energy-kcal_serving": 264,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 397.058823529412,
+        "energy-kcal_value": 388,
         "energy-kj": 1633,
         "energy-kj_100g": 1633,
         "energy-kj_serving": 1110,
@@ -5072,11 +5088,11 @@
         "nova-group_serving": 5.88235294117647,
         "nova-group_unit": "",
         "nova-group_value": 5.88235294117647,
-        "phosphorus": 0.252941176470588,
-        "phosphorus_100g": 0.252941176470588,
+        "phosphorus": 0.253,
+        "phosphorus_100g": 0.253,
         "phosphorus_serving": 0.172,
         "phosphorus_unit": "g",
-        "phosphorus_value": 0.252941176470588,
+        "phosphorus_value": 0.253,
         "proteins": 16,
         "proteins_100g": 16,
         "proteins_serving": 10.9,
@@ -5108,7 +5124,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "CRUNCHY PEANUT BUTTER"
+      "product_name": "Crunchy Peanut Butter"
     },
     {
       "additives_n": 3,
@@ -5766,10 +5782,11 @@
         "en:e322",
         "en:e322i"
       ],
-      "brands": "Yaya Kombucha",
+      "brands": "Eat Natural",
       "categories_tags": [
         "en:snacks",
         "en:sweet-snacks",
+        "en:confectioneries",
         "en:bars",
         "en:dietary-supplements",
         "en:bodybuilding-supplements",
@@ -5800,11 +5817,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 33.7,
         "energy": 2294.7,
-        "energy-kcal": 551,
-        "energy-kcal_100g": 551,
+        "energy-kcal": 550,
+        "energy-kcal_100g": 550,
         "energy-kcal_serving": 220,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 551,
+        "energy-kcal_value": 550,
         "energy-kj": 2294.7,
         "energy-kj_100g": 2294.7,
         "energy-kj_modifier": "~",
@@ -5863,7 +5880,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Yaya Kombucha Yuzu"
+      "product_name": "Eat Natural Protein Peanut & Dark Chocolate"
     },
     {
       "additives_n": 6,
@@ -6226,7 +6243,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "TREK",
+      "brands": "Trek",
       "categories_tags": [
         "en:snacks",
         "en:sweet-snacks",
@@ -6285,7 +6302,7 @@
         "energy-kcal_100g": 454,
         "energy-kcal_serving": 227,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 454.0,
+        "energy-kcal_value": 454,
         "energy-kj": 1900,
         "energy-kj_100g": 1900,
         "energy-kj_modifier": "~",
@@ -6397,10 +6414,9 @@
       },
       "nutriscore_grade": "not-applicable",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Protein Flapjack Cocoa Oat"
+      "product_name": "Flapjack protein"
     },
     {
       "additives_n": 8,
@@ -6571,7 +6587,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Grenade Oreo Protein Bar"
+      "product_name": "Grenade Oreo"
     },
     {
       "additives_n": 2,
@@ -7047,7 +7063,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "Clif Bar",
+      "brands": "CLIF",
       "categories_tags": [
         "en:plant-based-foods-and-beverages",
         "en:plant-based-foods",
@@ -7188,7 +7204,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Crunchy Peanut Butter"
+      "product_name": "Crunchy Peanut Butter CLIF Bar Energy Bar"
     },
     {
       "additives_n": 0,
@@ -7743,10 +7759,10 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 34,
         "energy": 1773,
-        "energy-kcal": 423,
-        "energy-kcal_100g": 423,
+        "energy-kcal": 422.222222222222,
+        "energy-kcal_100g": 422.222222222222,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 423,
+        "energy-kcal_value": 422.222222222222,
         "energy-kj": 1773,
         "energy-kj_100g": 1773,
         "energy-kj_unit": "kJ",
@@ -7830,7 +7846,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Barrita"
+      "product_name": "protein bar caramel"
     },
     {
       "additives_n": 5,
@@ -10273,7 +10289,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "Eat Natural",
+      "brands": "EAT NATURAL",
       "categories_tags": [
         "en:plant-based-foods-and-beverages",
         "en:plant-based-foods",
@@ -10311,11 +10327,11 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 36.0,
         "energy": 2352.9,
-        "energy-kcal": 542,
-        "energy-kcal_100g": 542,
-        "energy-kcal_serving": 217,
+        "energy-kcal": 547.920650095602,
+        "energy-kcal_100g": 547.920650095602,
+        "energy-kcal_serving": 219,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 542.0,
+        "energy-kcal_value": 547.920650095602,
         "energy-kj": 2352.9,
         "energy-kj_100g": 2352.9,
         "energy-kj_modifier": "~",
@@ -10372,10 +10388,9 @@
       },
       "nutriscore_grade": "not-applicable",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Maple Syrup, Pecan & Penuts Protein Bar"
+      "product_name": "PROTEIN maple syrup, pecans & peanuts"
     },
     {
       "additives_n": 0,
@@ -10524,6 +10539,31 @@
         "vitamin-a_serving": 0,
         "vitamin-a_unit": "g",
         "vitamin-a_value": 0,
+        "vitamin-b1": 0.000825,
+        "vitamin-b12": 1.875e-06,
+        "vitamin-b12_100g": 1.875e-06,
+        "vitamin-b12_serving": 7.5e-07,
+        "vitamin-b12_unit": "g",
+        "vitamin-b12_value": 1.875e-06,
+        "vitamin-b1_100g": 0.000825,
+        "vitamin-b1_serving": 0.00033,
+        "vitamin-b1_unit": "g",
+        "vitamin-b1_value": 0.000825,
+        "vitamin-b2": 0.00105,
+        "vitamin-b2_100g": 0.00105,
+        "vitamin-b2_serving": 0.00042,
+        "vitamin-b2_unit": "g",
+        "vitamin-b2_value": 0.00105,
+        "vitamin-b6": 0.00105,
+        "vitamin-b6_100g": 0.00105,
+        "vitamin-b6_serving": 0.00042,
+        "vitamin-b6_unit": "g",
+        "vitamin-b6_value": 0.00105,
+        "vitamin-b9": 0.00015,
+        "vitamin-b9_100g": 0.00015,
+        "vitamin-b9_serving": 6e-05,
+        "vitamin-b9_unit": "g",
+        "vitamin-b9_value": 0.00015,
         "vitamin-c": 0,
         "vitamin-c_100g": 0,
         "vitamin-c_serving": 0,
@@ -10547,7 +10587,6 @@
       },
       "nutriscore_grade": "not-applicable",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
       "product_name": "ce Yorkie Raisin & Biscuit Choc Bar 44G £1 £2.27 p"
@@ -10758,7 +10797,7 @@
         "en:e492",
         "en:e965"
       ],
-      "brands": "Billion",
+      "brands": "Prozis",
       "categories_tags": [
         "en:dietary-supplements",
         "en:bodybuilding-supplements",
@@ -10856,10 +10895,9 @@
       },
       "nutriscore_grade": "not-applicable",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Protein Peanut Bar"
+      "product_name": "Billion - Protein peanut bar"
     },
     {
       "additives_n": 8,
@@ -10983,7 +11021,7 @@
       "additives_tags": [
         "en:e306"
       ],
-      "brands": "CLIF BAR",
+      "brands": "Clif Bar",
       "categories_tags": [
         "en:snacks",
         "en:sweet-snacks",
@@ -11043,11 +11081,11 @@
         "copper_unit": "g",
         "copper_value": 0,
         "energy": 1596,
-        "energy-kcal": 379.411764705882,
-        "energy-kcal_100g": 379.411764705882,
-        "energy-kcal_serving": 258,
+        "energy-kcal": 397.058823529412,
+        "energy-kcal_100g": 397.058823529412,
+        "energy-kcal_serving": 270,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 379.411764705882,
+        "energy-kcal_value": 397.058823529412,
         "energy-kj": 1596,
         "energy-kj_100g": 1596,
         "energy-kj_serving": 1090,
@@ -11159,7 +11197,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Energy Bar"
+      "product_name": "Chocolate Chip"
     },
     {
       "additives_n": 5,
@@ -11755,7 +11793,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Chocolate Chip Cookie Dough"
+      "product_name": "Quest Protein Cookie bar"
     },
     {
       "additives_n": 1,
@@ -11855,7 +11893,7 @@
         "en:e955",
         "en:e965"
       ],
-      "brands": "Lidl",
+      "brands": "Sportyfeel",
       "categories_tags": [
         "en:snacks",
         "en:dietary-supplements",
@@ -11889,10 +11927,10 @@
         "carbohydrates_unit": "g",
         "carbohydrates_value": 36,
         "energy": 1733.6,
-        "energy-kcal": 372,
-        "energy-kcal_100g": 372,
+        "energy-kcal": 371.111111111111,
+        "energy-kcal_100g": 371.111111111111,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 372,
+        "energy-kcal_value": 371.111111111111,
         "energy-kj": 1733.6,
         "energy-kj_100g": 1733.6,
         "energy-kj_modifier": "~",
@@ -11940,7 +11978,6 @@
       },
       "nutriscore_grade": "not-applicable",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
       "product_name": "Crunchy Protein Bar - Schokoladengeschmack"
@@ -12125,11 +12162,6 @@
         "trans-fat_serving": 0,
         "trans-fat_unit": "g",
         "trans-fat_value": 0,
-        "vitamin-a": 0,
-        "vitamin-a_100g": 0,
-        "vitamin-a_serving": 0,
-        "vitamin-a_unit": "g",
-        "vitamin-a_value": 0.0,
         "vitamin-b1": 2.17391304347826e-05,
         "vitamin-b12": 1.32608695652174e-06,
         "vitamin-b12_100g": 1.32608695652174e-06,
@@ -12150,11 +12182,6 @@
         "vitamin-b6_serving": 7e-05,
         "vitamin-b6_unit": "g",
         "vitamin-b6_value": 0.000152173913043478,
-        "vitamin-c": 0,
-        "vitamin-c_100g": 0,
-        "vitamin-c_serving": 0,
-        "vitamin-c_unit": "g",
-        "vitamin-c_value": 0.0,
         "vitamin-d": 0,
         "vitamin-d_100g": 0,
         "vitamin-d_serving": 0,
@@ -12997,7 +13024,7 @@
         "en:e414",
         "en:e422"
       ],
-      "brands": "Kirkland",
+      "brands": "Kirkland Signature",
       "categories_tags": [
         "en:dietary-supplements",
         "en:bodybuilding-supplements",
@@ -13047,11 +13074,11 @@
         "copper_unit": "g",
         "copper_value": 0.0,
         "energy": 2242.5,
-        "energy-kcal": 351.851851851852,
-        "energy-kcal_100g": 351.851851851852,
-        "energy-kcal_serving": 141,
+        "energy-kcal": 475,
+        "energy-kcal_100g": 475,
+        "energy-kcal_serving": 190,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 351.851851851852,
+        "energy-kcal_value": 475,
         "energy-kj": 2242.5,
         "energy-kj_100g": 2242.5,
         "energy-kj_modifier": "~",
@@ -13181,7 +13208,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "not-applicable",
-      "product_name": "Chewy Protein Bar"
+      "product_name": "Chewy Protein Bar Peanut Butter & Semisweet Chocolate Chip"
     },
     {
       "additives_n": 5,
