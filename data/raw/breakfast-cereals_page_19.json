@@ -1,5 +1,5 @@
 {
-  "count": 25613,
+  "count": 25718,
   "page": 19,
   "page_count": 100,
   "page_size": 100,
@@ -5943,7 +5943,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "Quaker",
+      "brands": "QUAKER",
       "categories_tags": [
         "en:plant-based-foods-and-beverages",
         "en:plant-based-foods",
@@ -6149,7 +6149,7 @@
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "d",
-      "product_name": "Croque Nature Recette Originale"
+      "product_name": "HARVEST CRUNCH ORIGINAL Granola Cereal"
     },
     {
       "additives_n": 0,
@@ -10823,31 +10823,32 @@
         "proteins_serving": 17.4,
         "proteins_unit": "g",
         "proteins_value": 58,
-        "salt": 0.8,
-        "salt_100g": 0.8,
-        "salt_serving": 0.24,
+        "salt": 2.7,
+        "salt_100g": 2.7,
+        "salt_serving": 0.81,
         "salt_unit": "g",
-        "salt_value": 0.8,
+        "salt_value": 2.7,
         "saturated-fat": 0.4,
         "saturated-fat_100g": 0.4,
         "saturated-fat_serving": 0.12,
         "saturated-fat_unit": "g",
         "saturated-fat_value": 0.4,
-        "sodium": 0.0027,
-        "sodium_100g": 0.0027,
-        "sodium_serving": 0.00081,
+        "sodium": 1.08,
+        "sodium_100g": 1.08,
+        "sodium_modifier": "~",
+        "sodium_serving": 0.324,
         "sodium_unit": "g",
-        "sodium_value": 0.0027,
+        "sodium_value": 1.08,
         "sugars": 9.1,
         "sugars_100g": 9.1,
         "sugars_serving": 2.73,
         "sugars_unit": "g",
         "sugars_value": 9.1
       },
-      "nutriscore_grade": "c",
+      "nutriscore_grade": "d",
       "nutrition_data": "on",
       "nutrition_data_prepared_per": "100g",
-      "nutrition_grades": "c",
+      "nutrition_grades": "d",
       "product_name": "Soja Protein Crispies"
     },
     {

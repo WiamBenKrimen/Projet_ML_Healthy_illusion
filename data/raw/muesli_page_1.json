@@ -1,5 +1,5 @@
 {
-  "count": 8018,
+  "count": 8062,
   "page": 1,
   "page_count": 100,
   "page_size": 100,
@@ -2408,7 +2408,7 @@
     {
       "additives_n": 0,
       "additives_tags": [],
-      "brands": "Hacendado",
+      "brands": "HACENDADO",
       "categories_tags": [
         "en:plant-based-foods-and-beverages",
         "en:plant-based-foods",
@@ -3007,7 +3007,7 @@
         "en:e322",
         "en:e322i"
       ],
-      "brands": "Grainea",
+      "brands": "Grainéa",
       "categories_tags": [
         "en:plant-based-foods-and-beverages",
         "en:plant-based-foods",
@@ -3055,11 +3055,11 @@
         "choline_unit": "g",
         "choline_value": 0,
         "energy": 1888.3,
-        "energy-kcal": 446,
-        "energy-kcal_100g": 446,
-        "energy-kcal_serving": 134,
+        "energy-kcal": 335,
+        "energy-kcal_100g": 335,
+        "energy-kcal_serving": 100,
         "energy-kcal_unit": "kcal",
-        "energy-kcal_value": 446,
+        "energy-kcal_value": 335,
         "energy-kj": 1888.3,
         "energy-kj_100g": 1888.3,
         "energy-kj_modifier": "~",
@@ -3121,7 +3121,6 @@
       },
       "nutriscore_grade": "a",
       "nutrition_data": "on",
-      "nutrition_data_per": "100g",
       "nutrition_data_prepared_per": "100g",
       "nutrition_grades": "a",
       "product_name": "Muesli Chocolat-Noisette"

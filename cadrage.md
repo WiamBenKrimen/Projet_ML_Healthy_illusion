@@ -150,9 +150,10 @@ Le modèle apprendra à prédire `bad_nutrition` à partir de caractéristiques 
 | `proteins_100g` | Numérique | Quantité de protéines pour 100g |
 | `energy_kcal_100g` | Numérique | Énergie en kcal pour 100g |
 | `additives_count` | Numérique | Nombre d’additifs renseignés |
+| `has_labels` | Catégorielle binaire | Indique si le produit possède au moins un label |
+| `image_saine` | Binaire (dérivée) | Indicateur métier si le produit est présenté comme sain |
 | `main_category` | Catégorielle | Catégorie principale du produit |
 | `country` | Catégorielle | Pays principal du produit |
-| `has_labels` | Catégorielle binaire | Indique si le produit possède au moins un label |
 
 ---
 
@@ -278,7 +279,7 @@ Les faux négatifs sont plus coûteux que les faux positifs. Le projet privilég
 | Critère | Exigence |
 |---|---|
 | Type de tâche | Classification supervisée binaire |
-| Taille totale | Au moins 10 000 lignes |
+| Taille totale | Actuellement 15 114 lignes (data/dataset.csv) — exigence minimale : 10 000 lignes |
 | Nombre de features | Au moins 8 après feature engineering |
 | Classe minoritaire | Entre 5 % et 25 % |
 | Types de variables | Mélange de numériques et catégorielles |

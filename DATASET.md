@@ -107,8 +107,8 @@ healthy_illusion = 0  sinon
 
 | Element | Valeur |
 |---|---|
-| Nombre de lignes | 12 500 |
-| Nombre de colonnes | 17 |
+| Nombre de lignes | 15 114 |
+| Nombre de colonnes | 18 |
 | Nombre de features ML utilisables | 12 |
 | Format final | CSV (UTF-8) |
 | Chemin du dataset complet | data/dataset.csv |
@@ -292,22 +292,27 @@ has_labels, image_saine
 | Classe minoritaire (1) | Entre 5% et 25% du total |
 | Classe majoritaire (0) | Entre 75% et 95% du total |
 
-### Distribution mesuree sur le dataset final
+### Distribution mesurée
 
 | Classe bad_nutrition | Interpretation | Nombre | Pourcentage |
 |---:|---|---:|---:|
-| 0 | Qualite nutritionnelle acceptable | 10 000 | 80% |
-| 1 | Mauvaise qualite nutritionnelle | 2 500 | 20% |
-| Total | | 12 500 | 100% |
+| 0 | Qualite nutritionnelle acceptable | 12 467 | 82.49% |
+| 1 | Mauvaise qualite nutritionnelle | 2 647 | 17.51% |
+| Total | | 15 114 | 100% |
 
-Le graphique de distribution doit etre ajoute dans le notebook exploratoire de
-Phase 2 pour illustrer visuellement ce desequilibre.
+Statistiques complémentaires (calculées à partir de `data/dataset.csv`):
 
-### Niveau de desequilibre
+- `image_saine = 1` : 12 624 produits
+- `healthy_illusion = 1` : 2 089 produits
 
-Avec une classe minoritaire a 20%, le dataset est classe comme
-"Legerement desequilibre", ce qui justifie l'utilisation de metriques adaptees
-(Recall, F1-score, PR-AUC) plutot que l'accuracy seule.
+Ces valeurs proviennent du dernier run de `src/data_collection.py` (log du
+15/05/2026). Recalculer la distribution si la collecte est relancée.
+
+### Niveau de déséquilibre (rappel)
+
+La contrainte métier est que la classe minoritaire (`bad_nutrition = 1`) se
+situe idéalement entre 5 % et 25 % du total. Utiliser les métriques adaptées
+(Recall, F1-score, PR-AUC) sur des jeux déséquilibrés.
 
 ---
 
