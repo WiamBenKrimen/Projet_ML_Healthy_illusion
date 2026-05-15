@@ -10,27 +10,37 @@
 
 Le projet appartient au domaine de la **santé alimentaire** et de la **protection du consommateur**.
 
-Dans le marché alimentaire, certains produits peuvent être présentés comme sains grâce à leurs labels, catégories ou positionnement marketing : bio, protéiné, sans sucre ajouté, muesli, yaourt, smoothie, etc. Cependant, ces produits peuvent parfois avoir une mauvaise qualité nutritionnelle réelle.
+Dans le marché alimentaire, certains produits peuvent être présentés comme sains grâce à leurs labels, leurs catégories ou leur positionnement marketing : bio, protéiné, sans sucre ajouté, muesli, yaourt, smoothie, barres énergétiques, etc.
 
-L’objectif général du projet est donc d’aider à identifier les produits qui présentent un risque nutritionnel, puis d’analyser parmi eux ceux qui possèdent une image saine.
+Cependant, cette image positive ne garantit pas toujours une bonne qualité nutritionnelle réelle. Certains produits peuvent contenir beaucoup de sucres, de graisses, de sel ou d’additifs.
+
+L’objectif général du projet est donc d’identifier les produits qui présentent une mauvaise qualité nutritionnelle, puis d’analyser parmi eux ceux qui possèdent une image saine.
 
 ---
 
 ## 2. Question métier
 
-**Peut-on prédire automatiquement si un produit alimentaire possède une mauvaise qualité nutritionnelle à partir de ses caractéristiques nutritionnelles et catégorielles ?**
+La question métier principale est :
 
-Puis, dans un second temps :
+> **Peut-on prédire automatiquement si un produit alimentaire possède une mauvaise qualité nutritionnelle à partir de ses caractéristiques nutritionnelles et catégorielles ?**
 
-**Parmi les produits présentés comme sains, peut-on détecter ceux qui sont en réalité de mauvaise qualité nutritionnelle ?**
+Dans un second temps, l’analyse métier complémentaire est :
 
----
+> **Parmi les produits présentés comme sains, peut-on détecter ceux qui sont en réalité de mauvaise qualité nutritionnelle ?**
+
 ---
 
 ## 3. Exploration des APIs candidates
 
-Avant de choisir la source finale des données, nous avons exploré plusieurs APIs publiques liées au domaine de l’alimentation et de la nutrition.  
-L’objectif était de trouver une API capable de fournir un volume suffisant de données, des variables exploitables pour le Machine Learning, ainsi qu’une variable cible naturelle pour un problème de classification supervisée.
+Avant de choisir la source finale des données, nous avons exploré plusieurs APIs publiques liées au domaine de l’alimentation et de la nutrition.
+
+L’objectif était de trouver une API capable de fournir :
+
+- un volume suffisant de données ;
+- des variables exploitables pour le Machine Learning ;
+- un mélange de variables numériques et catégorielles ;
+- une variable cible naturelle ou une information permettant de construire une cible claire ;
+- des conditions d’accès compatibles avec une collecte de plus de 10 000 lignes.
 
 ### 3.1 APIs étudiées
 
@@ -47,7 +57,7 @@ Pour chaque API candidate, nous avons consulté la documentation officielle afin
 - la disponibilité gratuite de l’API ;
 - la possibilité de récupérer un volume important de données ;
 - la présence de variables exploitables pour un modèle de classification ;
-- l’existence d’une variable cible naturelle ;
+- l’existence d’une variable cible naturelle ou construite à partir d’une règle claire ;
 - les limites d’utilisation, notamment les quotas et les conditions d’accès.
 
 ### 3.3 Choix final de l’API
@@ -56,281 +66,157 @@ Nous avons retenu l’API **Open Food Facts**, car elle correspond le mieux à n
 
 Cette API fournit à la fois :
 
-- des caractéristiques nutritionnelles numériques : sucres, matières grasses, sel, fibres, protéines, énergie ;
+- des caractéristiques nutritionnelles numériques : sucres, matières grasses, graisses saturées, sel, fibres, protéines, énergie ;
 - des caractéristiques catégorielles : catégories, pays, marques ;
-- des informations liées à l’image du produit : labels, catégories marketing ;
+- des informations liées à l’image du produit : labels et catégories ;
 - une information naturelle permettant de construire la variable cible : le Nutri-Score.
-
-Le Nutri-Score permet de créer la cible `bad_nutrition` sans inventer artificiellement la classe à prédire :
-
-```text
-bad_nutrition = 1 si nutriscore_grade ∈ {d, e}
-bad_nutrition = 0 si nutriscore_grade ∈ {a, b, c}
-
-## 4. Source des données
-
-### API utilisée
-
-- **Nom de l’API :** Open Food Facts
-- **URL :** https://world.openfoodfacts.org
-- **Type :** API REST publique et gratuite
-- **Authentification :** aucune clé API nécessaire
-- **Données disponibles :** nom du produit, catégories, labels, Nutri-Score, valeurs nutritionnelles, additifs, pays, marques.
-
-### Endpoint principal utilisé
-
-```text
-GET https://world.openfoodfacts.org/cgi/search.pl
-```
-
-Exemple de paramètres :
-
-```text
-action=process
-json=1
-page_size=200
-page={num_page}
-fields=code,product_name,categories_tags,labels_tags,countries_tags,nutriscore_grade,nutriments,additives_n
-```
-
-Remarque : la liste exacte des catégories interrogées est définie dans
-`src/data_collection.py` (variable `COLLECTION_CATEGORIES`). Le paramètre
-`tag_contains=contains` est utilisé pour le matching, ce qui signifie que la
-recherche se fait par sous-chaîne et peut retourner des produits variés; garder
-cela en tête lors de l'interprétation des résultats.
 
 ---
 
-## 5. Nature du problème ML
+## 4. Objectifs métiers quantifiés
 
-Le projet est un problème de **classification supervisée binaire**.
+L’objectif métier principal est de détecter les produits alimentaires ayant une mauvaise qualité nutritionnelle à partir de leurs caractéristiques nutritionnelles et catégorielles.
 
-La variable cible principale est :
+Dans ce projet, un produit est considéré comme ayant une mauvaise qualité nutritionnelle si son Nutri-Score est **D** ou **E**.
+
+Les objectifs quantifiés du projet sont les suivants :
+
+| Objectif métier | Traduction mesurable |
+|---|---|
+| Détecter les produits de mauvaise qualité nutritionnelle | Identifier correctement les produits avec `bad_nutrition = 1` |
+| Réduire le risque de laisser passer un produit réellement mauvais | Obtenir un recall élevé sur la classe `bad_nutrition = 1` |
+| Limiter les fausses alertes | Garder une précision acceptable sur la classe `bad_nutrition = 1` |
+| Travailler sur un dataset déséquilibré | Maintenir une classe minoritaire comprise entre 5 % et 25 % |
+| Préparer un dataset exploitable pour la phase de modélisation | Obtenir au moins 10 000 lignes et au moins 8 features |
+
+Dans notre dataset final, la classe minoritaire `bad_nutrition = 1` représente **17.51 %**, ce qui respecte la condition de déséquilibre demandée.
+
+---
+
+## 5. Tableau de traduction métier → Machine Learning
+
+| Élément métier | Traduction ML | Type | Rôle dans le projet |
+|---|---|---|---|
+| Produit alimentaire | Ligne du dataset | Observation | Élément analysé par le modèle |
+| Valeurs nutritionnelles | `sugars_100g`, `fat_100g`, `saturated_fat_100g`, `salt_100g`, `fiber_100g`, `proteins_100g`, `energy_kcal_100g` | Features numériques | Entrées du modèle |
+| Nombre d’additifs | `additives_count` | Feature numérique | Entrée du modèle |
+| Catégorie du produit | `main_category` | Feature catégorielle | Décrit le type de produit |
+| Pays associé au produit | `country` | Feature catégorielle | Donnée descriptive |
+| Présence de labels | `has_labels` | Feature binaire | Indique si le produit possède au moins un label |
+| Image saine du produit | `image_saine` | Feature métier binaire | Indique si le produit est associé à une image nutritionnelle positive |
+| Nutri-Score | `nutriscore_grade` | Source de la cible | Sert uniquement à construire la variable cible |
+| Mauvaise qualité nutritionnelle | `bad_nutrition` | Target binaire | Variable à prédire |
+| Produit à illusion saine | `healthy_illusion` | Variable métier d’analyse | Produit avec `image_saine = 1` et `bad_nutrition = 1` |
+
+La variable cible principale du modèle est :
 
 ```text
 bad_nutrition
 ```
 
-Elle indique si le produit possède une mauvaise qualité nutritionnelle.
+Règle de construction :
+
+```text
+Nutri-Score A, B ou C → bad_nutrition = 0
+Nutri-Score D ou E   → bad_nutrition = 1
+```
+
+La variable `healthy_illusion` n’est pas la cible principale du modèle. Elle sert à l’analyse métier finale pour identifier les produits qui ont une image saine mais une mauvaise qualité nutritionnelle.
 
 ---
 
-## 6. Définition de la variable cible principale
+## 6. Analyse du coût asymétrique
 
-La variable cible `bad_nutrition` est créée à partir du champ `nutriscore_grade` fourni par Open Food Facts.
+Dans ce projet, les erreurs du modèle n’ont pas toutes le même impact.
 
-Règle :
+### 6.1 Faux négatif
+
+Un faux négatif correspond à un produit réellement mauvais nutritionnellement, mais prédit comme acceptable par le modèle.
 
 ```text
-bad_nutrition = 1 si nutriscore_grade ∈ {d, e}
-bad_nutrition = 0 si nutriscore_grade ∈ {a, b, c}
+Vraie classe : bad_nutrition = 1
+Prédiction   : bad_nutrition = 0
 ```
 
-Interprétation :
+Cette erreur est plus coûteuse dans notre contexte, car le système laisse passer un produit problématique sans le signaler.
 
-| Nutri-Score | bad_nutrition | Interprétation |
-|---|---:|---|
-| A | 0 | Qualité nutritionnelle acceptable |
-| B | 0 | Qualité nutritionnelle acceptable |
-| C | 0 | Qualité nutritionnelle acceptable |
-| D | 1 | Mauvaise qualité nutritionnelle |
-| E | 1 | Mauvaise qualité nutritionnelle |
+### 6.2 Faux positif
 
-### Remarque méthodologique sur le Nutri-Score
+Un faux positif correspond à un produit nutritionnellement acceptable, mais prédit comme mauvais par le modèle.
 
-La colonne `nutriscore_grade` provient directement de l’API Open Food Facts. Elle est utilisée uniquement pour construire la variable cible `bad_nutrition` selon la règle suivante :
+```text
+Vraie classe : bad_nutrition = 0
+Prédiction   : bad_nutrition = 1
+```
 
-- Nutri-Score A, B ou C → `bad_nutrition = 0`
-- Nutri-Score D ou E → `bad_nutrition = 1`
+Cette erreur est moins grave qu’un faux négatif, car elle provoque surtout une alerte inutile.
+
+### 6.3 Conclusion
+
+Dans notre projet, le coût d’un faux négatif est plus élevé que celui d’un faux positif.
+
+Il est donc préférable de privilégier un modèle capable de bien détecter les produits `bad_nutrition = 1`, même si cela peut produire quelques fausses alertes.
+
+---
+
+## 7. Choix des métriques d’évaluation
+
+Comme le dataset est déséquilibré, l’accuracy seule n’est pas suffisante pour évaluer le modèle.
+
+Nous utiliserons les métriques suivantes :
+
+| Métrique | Rôle | Justification |
+|---|---|---|
+| Recall sur `bad_nutrition = 1` | Mesurer la capacité du modèle à détecter les produits réellement mauvais | Métrique prioritaire, car les faux négatifs sont les erreurs les plus coûteuses |
+| Precision sur `bad_nutrition = 1` | Mesurer la fiabilité des alertes du modèle | Permet de limiter les fausses alertes |
+| F1-score sur `bad_nutrition = 1` | Équilibrer recall et precision | Utile pour avoir un compromis entre détection et précision |
+| PR-AUC | Évaluer le modèle sur un dataset déséquilibré | Plus adaptée que l’accuracy lorsque la classe positive est minoritaire |
+
+Objectifs indicatifs pour la phase de modélisation :
+
+| Métrique | Objectif visé |
+|---|---|
+| Recall sur `bad_nutrition = 1` | ≥ 0.75 |
+| Precision sur `bad_nutrition = 1` | ≥ 0.50 |
+| F1-score sur `bad_nutrition = 1` | ≥ 0.60 |
+| PR-AUC | À maximiser |
+
+Le recall est prioritaire, car l’objectif principal est de ne pas manquer les produits ayant une mauvaise qualité nutritionnelle.
+
+---
+
+## 8. Variable cible et prévention du data leakage
+
+La colonne `nutriscore_grade` provient directement de l’API Open Food Facts. Elle est utilisée uniquement pour construire la variable cible `bad_nutrition`.
 
 Nous conservons `nutriscore_grade` dans le dataset afin de garder une trace claire de la construction de la cible et de faciliter la vérification du dataset.
 
 Cependant, cette colonne ne sera pas utilisée comme variable d’entrée lors de l’entraînement des modèles. En effet, comme elle sert directement à construire la cible, l’utiliser comme feature donnerait indirectement la réponse au modèle et fausserait l’évaluation.
 
-Ainsi, lors de la phase d’entraînement, les variables utilisées seront uniquement les caractéristiques descriptives du produit : valeurs nutritionnelles, nombre d’additifs, catégorie principale, pays, labels et variable `image_saine`.
----
-
-## 7. Variables explicatives prévues
-
-Le modèle apprendra à prédire `bad_nutrition` à partir de caractéristiques du produit.
-
-| Variable | Type | Description |
-|---|---|---|
-| `sugars_100g` | Numérique | Quantité de sucres pour 100g |
-| `fat_100g` | Numérique | Quantité de matières grasses pour 100g |
-| `saturated_fat_100g` | Numérique | Quantité de graisses saturées pour 100g |
-| `salt_100g` | Numérique | Quantité de sel pour 100g |
-| `fiber_100g` | Numérique | Quantité de fibres pour 100g |
-| `proteins_100g` | Numérique | Quantité de protéines pour 100g |
-| `energy_kcal_100g` | Numérique | Énergie en kcal pour 100g |
-| `additives_count` | Numérique | Nombre d’additifs renseignés |
-| `has_labels` | Catégorielle binaire | Indique si le produit possède au moins un label |
-| `image_saine` | Binaire (dérivée) | Indicateur métier si le produit est présenté comme sain |
-| `main_category` | Catégorielle | Catégorie principale du produit |
-| `country` | Catégorielle | Pays principal du produit |
+Ainsi, lors de la phase d’entraînement, les variables utilisées seront uniquement les caractéristiques descriptives du produit : valeurs nutritionnelles, nombre d’additifs, catégorie principale, pays, présence de labels et variable `image_saine`.
 
 ---
 
-## 8. Variable métier : `image_saine`
+## 9. Synthèse des livrables liés au cadrage
 
-La variable `image_saine` n’est pas la cible principale du modèle.
+Les livrables associés à cette phase sont :
 
-Elle représente l’image perçue du produit, c’est-à-dire si le produit est présenté comme sain à travers ses catégories ou ses labels.
-
-Elle ne veut pas dire que le produit est réellement sain.
-
-Règle proposée :
-
-```text
-image_saine = 1 si le produit contient au moins un indicateur d’image saine
-image_saine = 0 sinon
-```
-
-### Catégories associées à une image saine
-
-```text
-muesli, granola, breakfast-cereals, cereals,
-yogurts, fermented-milk-products,
-smoothies, fruit-juices,
-protein-bars, energy-bars, cereal-bars,
-sports-nutrition, diet-products, light-products
-```
-
-### Labels associés à une image saine
-
-```text
-organic, bio, no-added-sugar, low-fat, reduced-fat,
-high-protein, source-of-fibre, rich-in-fibre, natural
-```
-
-Remarque importante : tous les labels Open Food Facts ne sont pas considérés comme des labels santé. Les labels d'origine ou purement logistiques, par exemple `halal`, `kosher`, `fair-trade`, `recyclable` ou les labels `made-in-*`, ne sont pas utilisés comme indicateurs d’image saine.
-
----
-
-## 9. Conclusion métier : `healthy_illusion`
-
-La variable `healthy_illusion` est une conclusion métier obtenue après la création de `bad_nutrition` et `image_saine`.
-
-Règle :
-
-```text
-healthy_illusion = 1 si image_saine = 1 ET bad_nutrition = 1
-healthy_illusion = 0 sinon
-```
-
-Interprétation : un produit est considéré comme une illusion saine s’il est présenté comme sain mais possède une mauvaise qualité nutritionnelle.
-
-| Produit | image_saine | bad_nutrition | healthy_illusion |
-|---|---:|---:|---:|
-| Yaourt bio très sucré | 1 | 1 | 1 |
-| Barre protéinée Nutri-Score E | 1 | 1 | 1 |
-| Soda classique Nutri-Score E | 0 | 1 | 0 |
-| Muesli Nutri-Score B | 1 | 0 | 0 |
-
----
-
-## 10. Objectifs métiers quantifiés
-
-| Objectif métier | Critère de succès |
+| Fichier | Rôle |
 |---|---|
-| Détecter les produits à mauvaise qualité nutritionnelle | Identifier au moins 75 % des produits réellement mauvais nutritionnellement |
-| Limiter les fausses alertes | Garder une précision minimale de 50 % |
-| Identifier les illusions saines comme analyse finale | Repérer les produits avec `image_saine = 1` et `bad_nutrition = 1` |
-| Obtenir un système exploitable | Temps de prédiction inférieur à 100 ms par produit |
+| `cadrage.md` | Définition du sujet, question métier, objectifs ML, coût des erreurs et métriques |
+| `src/data_collection.py` | Script de collecte et de préparation du dataset |
+| `data/raw/*.json` | Réponses brutes de l’API |
+| `data/dataset.csv` | Dataset final exploitable |
+| `data/sample.csv` | Échantillon de 100 lignes |
+| `DATASET.md` | Documentation détaillée du dataset |
+| `notebooks/01_discovery.ipynb` | Notebook de vérification et découverte du dataset |
 
 ---
 
-## 11. Traduction en objectifs ML
+## 10. Conclusion
 
-| Objectif métier | Objectif ML | Métrique principale | Seuil cible |
-|---|---|---|---|
-| Détecter les produits mauvais nutritionnellement | Maximiser le recall sur la classe `bad_nutrition = 1` | Recall | ≥ 0.75 |
-| Réduire les fausses alertes | Maintenir une précision acceptable | Precision | ≥ 0.50 |
-| Obtenir un bon compromis global | Équilibrer precision et recall | F1-score | ≥ 0.60 |
-| Évaluer sur données déséquilibrées | Utiliser une métrique adaptée au déséquilibre | PR-AUC | À maximiser |
+Ce projet répond à un problème de classification supervisée binaire.
 
----
+La cible principale est `bad_nutrition`, construite à partir du Nutri-Score fourni par l’API Open Food Facts. L’analyse métier complémentaire permet ensuite d’identifier les produits à `healthy_illusion`, c’est-à-dire les produits qui possèdent une image saine mais une mauvaise qualité nutritionnelle.
 
-## 12. Analyse du coût métier asymétrique
-
-### Faux négatif
-
-Un faux négatif correspond à un produit réellement mauvais nutritionnellement, mais prédit comme acceptable.
-
-Conséquences : le consommateur n’est pas alerté, le produit peut être consommé régulièrement malgré sa mauvaise qualité nutritionnelle, et le risque est plus important si le produit possède une image saine.
-
-Le coût métier est considéré comme élevé.
-
-### Faux positif
-
-Un faux positif correspond à un produit acceptable nutritionnellement, mais prédit comme mauvais.
-
-Conséquences : le consommateur peut éviter un produit pourtant acceptable. L’impact est principalement une gêne ou une perte de confiance.
-
-Le coût métier est considéré comme plus faible.
-
-### Conclusion
-
-Les faux négatifs sont plus coûteux que les faux positifs. Le projet privilégiera donc le **recall** sur la classe `bad_nutrition = 1`.
-
----
-
-## 13. Métriques retenues
-
-| Métrique | Statut | Justification |
-|---|---|---|
-| Recall classe 1 | Principale | Priorité : ne pas rater les mauvais produits |
-| Precision classe 1 | Secondaire | Limiter les fausses alertes |
-| F1-score classe 1 | Secondaire | Compromis entre recall et precision |
-| PR-AUC | Validation | Adaptée aux données déséquilibrées |
-| Accuracy | Non principale | Peut être trompeuse si les classes sont déséquilibrées |
-| ROC-AUC seule | Non principale | Peut être optimiste sur données déséquilibrées |
-
----
-
-## 14. Contraintes dataset à respecter
-
-| Critère | Exigence |
-|---|---|
-| Type de tâche | Classification supervisée binaire |
-| Taille totale | Actuellement 15 114 lignes (data/dataset.csv) — exigence minimale : 10 000 lignes |
-| Nombre de features | Au moins 8 après feature engineering |
-| Classe minoritaire | Entre 5 % et 25 % |
-| Types de variables | Mélange de numériques et catégorielles |
-
----
-
-## 15. Pipeline général du projet
-
-```text
-1. Collecter les produits depuis Open Food Facts.
-2. Sauvegarder les données brutes en JSON.
-3. Extraire les variables nutritionnelles et catégorielles.
-4. Créer la cible bad_nutrition à partir du Nutri-Score.
-5. Supprimer nutriscore_grade des features utilisées par le modèle.
-6. Créer image_saine à partir des labels et catégories.
-7. Créer healthy_illusion comme conclusion métier.
-8. Vérifier la distribution des classes.
-9. Exporter dataset.csv et sample.csv.
-10. Utiliser le dataset en Phase 2 pour entraîner et évaluer les modèles.
-```
-
----
-
-## 16. Positionnement final du projet
-
-Le modèle ML ne prédit pas directement la notion subjective d’illusion saine.
-
-Le modèle prédit :
-
-```text
-bad_nutrition
-```
-
-Ensuite, la conclusion métier est faite avec :
-
-```text
-healthy_illusion = image_saine ET bad_nutrition
-```
-
-Ce choix permet de garder une cible ML plus naturelle, basée sur le Nutri-Score fourni par l’API, tout en conservant l’objectif métier initial de détection des produits à illusion saine.
+Le dataset final est prêt pour la phase suivante : l’entraînement, l’évaluation et la comparaison de modèles de classification.

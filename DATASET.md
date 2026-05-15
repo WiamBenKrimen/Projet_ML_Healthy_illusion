@@ -1,39 +1,38 @@
-# DATASET.md - Documentation du dataset
+# DATASET.md — Healthy Illusion
 
-## 1. Identification
+## a) Identification
 
-| Element | Valeur |
-|---|---|
-| Nom du dataset | Healthy Illusion Food Dataset |
-| Version | 1.1 |
-| Auteurs | HAJJOU Hajar - ERRABOUN Nouha - BENKRIMEN Wiam  |
-| Date de collecte | Mai 2026 |
-| Source | Open Food Facts |
-| Type de tache | Classification supervisee binaire |
-| Variable cible principale | bad_nutrition |
+**Nom du dataset :** Healthy Illusion Dataset  
+**Projet :** Détection des produits alimentaires à image saine mais mauvaise qualité nutritionnelle  
+**Auteurs :** HAJJOU Hajar, ERRABOUN Nouha, BENKRIMEN Wiam  
+**Date de collecte :** 15/05/2026  
+**Version :** v3.0  
 
 ---
 
-## 2. Source des donnees
+## b) Source
 
-Les donnees sont collectees depuis l'API publique Open Food Facts.
+Les données ont été collectées à partir de l’API publique **Open Food Facts**.
 
-- Site principal : https://world.openfoodfacts.org
-- API : https://world.openfoodfacts.org/cgi/search.pl
-- Authentification : aucune cle API necessaire
-- Format de reponse : JSON
-- Licence : Open Database License (ODbL)
-- Date d'acces : Mai 2026
+**API utilisée :** Open Food Facts API  
+**URL principale :** `https://world.openfoodfacts.org`  
+**Endpoint interrogé :**
 
-### Endpoint utilise
-
-```
+```text
 GET https://world.openfoodfacts.org/cgi/search.pl
 ```
 
-### Parametres principaux
+La collecte est réalisée par catégories Open Food Facts. Exemples de catégories utilisées :
 
+```text
+waters, milk, plain-yogurts, plant-based-beverages, wholemeal-breads,
+breakfast-cereals, muesli, granola, yogurts, fruit-juices, smoothies,
+protein-bars, energy-bars, biscuits, chocolates
 ```
+
+Paramètres principaux utilisés dans les appels API :
+
+```text
 action=process
 json=1
 page_size=200
@@ -47,337 +46,166 @@ tag_contains_0=contains
 tag_0={categorie}
 ```
 
-### Categories interrogees
+**Date d’accès :** 15/05/2026  
 
-La collecte a volontairement melange deux familles de categories pour capturer
-le phenomene de "healthy illusion" :
+Les réponses brutes de l’API sont sauvegardées dans :
 
-Categories a forte image saine :
-
-```
-breakfast-cereals, muesli, granola, yogurts,
-fermented-milk-products, fruit-juices, smoothies,
-protein-bars, energy-bars, cereal-bars, sports-nutrition,
-plant-based-foods, organic-foods
+```text
+data/raw/*.json
 ```
 
-Categories de contraste et de diversification :
+Le dataset final est sauvegardé dans :
 
-```
-milk, biscuits, chocolates, waters, unsweetened-beverages,
-plain-yogurts, wholemeal-breads, soups, vegetable-soups,
-canned-vegetables, frozen-vegetables, fruit-compotes,
-pastas, rice, couscous, oatmeal, rolled-oats,
-canned-legumes, canned-beans, lentils, canned-fish, tuna,
-tomato-sauces, biscuits, chocolates
+```text
+data/dataset.csv
 ```
 
-Ce choix permet de reunir des produits qui semblent sains et d'autres qui ne
-portent pas cette image, afin de construire une cible binaire desequilibree.
+Un échantillon de 100 lignes est sauvegardé dans :
 
-Note de cohérence : la liste exacte des catégories interrogées est définie
-dans le script `src/data_collection.py` (variable `COLLECTION_CATEGORIES`).
-L'API est appelée avec `tag_contains=contains`, ce qui effectue un matching
-par sous-chaîne : cela maximise la couverture mais peut aussi introduire du
-bruit (produits non désirés si la chaîne apparaît dans une catégorie plus large).
-Pour reproduire exactement la collecte, consulter `src/data_collection.py`.
+```text
+data/sample.csv
+```
 
 ---
 
-## 3. Objectif du dataset
+## c) Description
 
-Ce dataset est construit pour entrainer un modele de classification supervisee binaire
-capable de predire si un produit alimentaire possede une mauvaise qualite nutritionnelle,
-a partir de ses caracteristiques nutritionnelles, categorielle et derivees.
+### Objectif du dataset
 
-### Question metier principale
+L’objectif de ce dataset est de préparer des données exploitables pour un problème de classification supervisée autour de la qualité nutritionnelle des produits alimentaires.
 
-Peut-on predire automatiquement si un produit alimentaire possede une mauvaise qualite
-nutritionnelle a partir de ses caracteristiques nutritionnelles, categorielle et
-de quelques variables derivees de l'emballage et du positionnement produit ?
+Le problème métier étudié est le suivant :
+
+> Peut-on identifier les produits alimentaires qui peuvent avoir une image saine, mais qui présentent en réalité une mauvaise qualité nutritionnelle ?
+
+Dans ce projet, le modèle ne prédit pas directement une notion subjective d’« illusion saine ».  
+La variable cible principale est `bad_nutrition`.
+
+Ensuite, la variable métier `healthy_illusion` permet d’identifier les produits qui ont à la fois :
+
+```text
+image_saine = 1
+bad_nutrition = 1
+```
+
+Cela correspond aux produits qui possèdent une image saine, mais qui ont une mauvaise qualité nutritionnelle selon le Nutri-Score.
+
+---
+
+### Dimensions du dataset
+
+**Nombre de lignes :** 15 114  
+**Nombre de colonnes :** 18  
+
+---
+
+### Schéma détaillé des variables
+
+| Variable | Type | Description métier | Plage de valeurs / Modalités | Unité |
+|---|---|---|---|---|
+| `code` | Catégorielle | Identifiant unique du produit dans Open Food Facts | Code produit | Aucune |
+| `product_name` | Catégorielle | Nom du produit | Texte | Aucune |
+| `brands` | Catégorielle | Marque du produit | Texte | Aucune |
+| `main_category` | Catégorielle | Catégorie principale du produit | Exemples : yogurts, muesli, biscuits, chocolates | Aucune |
+| `country` | Catégorielle | Pays associé au produit | Exemples : france, morocco, united-states | Aucune |
+| `sugars_100g` | Numérique | Quantité de sucres pour 100g | Valeur positive ou nulle | g / 100g |
+| `fat_100g` | Numérique | Quantité de graisses pour 100g | Valeur positive ou nulle | g / 100g |
+| `saturated_fat_100g` | Numérique | Quantité de graisses saturées pour 100g | Valeur positive ou nulle | g / 100g |
+| `salt_100g` | Numérique | Quantité de sel pour 100g | Valeur positive ou nulle | g / 100g |
+| `fiber_100g` | Numérique | Quantité de fibres pour 100g | Valeur positive ou nulle | g / 100g |
+| `proteins_100g` | Numérique | Quantité de protéines pour 100g | Valeur positive ou nulle | g / 100g |
+| `energy_kcal_100g` | Numérique | Énergie du produit pour 100g | Valeur positive ou nulle | kcal / 100g |
+| `additives_count` | Numérique | Nombre d’additifs détectés | 0, 1, 2, ... | Nombre |
+| `has_labels` | Binaire | Indique si le produit possède au moins un label | 0 = non, 1 = oui | Aucune |
+| `image_saine` | Binaire | Indique si le produit possède une catégorie ou un label donnant une image nutritionnelle positive | 0 = non, 1 = oui | Aucune |
+| `nutriscore_grade` | Catégorielle | Nutri-Score fourni par l’API | a, b, c, d, e | Aucune |
+| `bad_nutrition` | Binaire | Variable cible indiquant une mauvaise qualité nutritionnelle | 0 = A/B/C, 1 = D/E | Aucune |
+| `healthy_illusion` | Binaire | Variable métier indiquant un produit à image saine mais mauvaise qualité nutritionnelle | 0 = non, 1 = oui | Aucune |
+
+---
 
 ### Variable cible
 
-```
-bad_nutrition = 1  si Nutri-Score appartient a {D, E}  -> mauvaise qualite nutritionnelle
-bad_nutrition = 0  si Nutri-Score appartient a {A, B, C} -> qualite acceptable
-```
+La variable cible du projet est :
 
-### Analyse metier complementaire
-
-```
-healthy_illusion = 1  si image_saine = 1 ET bad_nutrition = 1
-healthy_illusion = 0  sinon
+```text
+bad_nutrition
 ```
 
----
+Elle est construite à partir de `nutriscore_grade`.
 
-## 4. Description generale du dataset
+Règle utilisée :
 
-| Element | Valeur |
+```text
+Nutri-Score A, B ou C → bad_nutrition = 0
+Nutri-Score D ou E   → bad_nutrition = 1
+```
+
+Interprétation :
+
+| Valeur | Signification |
 |---|---|
-| Nombre de lignes | 15 114 |
-| Nombre de colonnes | 18 |
-| Nombre de features ML utilisables | 12 |
-| Format final | CSV (UTF-8) |
-| Chemin du dataset complet | data/dataset.csv |
-| Chemin de l'echantillon | data/sample.csv (100 lignes) |
+| `0` | Produit avec qualité nutritionnelle acceptable |
+| `1` | Produit avec mauvaise qualité nutritionnelle |
 
 ---
 
-## 5. Schema detaille des variables
+### Remarque méthodologique sur le Nutri-Score
 
-| Variable | Type | Role | Description | Valeurs / Unite |
-|---|---|---|---|---|
-| code | Categorielle | Identifiant | Code-barres EAN du produit | Texte |
-| product_name | Categorielle | Information | Nom commercial du produit | Texte libre |
-| brands | Categorielle | Information | Marque du produit | Texte libre |
-| main_category | Categorielle | Feature | Categorie principale du produit | Texte normalise |
-| country | Categorielle | Feature | Pays principal du produit | Texte normalise |
-| sugars_100g | Numerique | Feature | Quantite de sucres pour 100g | g/100g |
-| fat_100g | Numerique | Feature | Matieres grasses totales pour 100g | g/100g |
-| saturated_fat_100g | Numerique | Feature | Graisses saturees pour 100g | g/100g |
-| salt_100g | Numerique | Feature | Quantite de sel pour 100g | g/100g |
-| fiber_100g | Numerique | Feature | Quantite de fibres pour 100g | g/100g |
-| proteins_100g | Numerique | Feature | Quantite de proteines pour 100g | g/100g |
-| energy_kcal_100g | Numerique | Feature | Energie du produit pour 100g | kcal/100g |
-| additives_count | Numerique | Feature | Nombre d'additifs alimentaires | Entier >= 0 |
-| has_labels | Binaire | Feature | Presence d'au moins un label | 0 ou 1 |
-| image_saine | Binaire | Feature derivee | Produit percu comme sain | 0 ou 1 |
-| nutriscore_grade | Categorielle | Source cible uniquement | Nutri-Score brut de l'API | a, b, c, d, e |
-| bad_nutrition | Binaire | Cible ML | Mauvaise qualite nutritionnelle | 0 ou 1 |
-| healthy_illusion | Binaire | Conclusion metier | Image saine + mauvaise nutrition | 0 ou 1 |
+La colonne `nutriscore_grade` provient directement de l’API Open Food Facts. Elle est utilisée uniquement pour construire la variable cible `bad_nutrition`.
+
+Nous conservons `nutriscore_grade` dans le dataset afin de garder une trace claire de la construction de la cible et de faciliter la vérification du dataset.
+
+Cependant, cette colonne ne sera pas utilisée comme variable d’entrée lors de l’entraînement des modèles. En effet, comme elle sert directement à construire la cible, l’utiliser comme feature donnerait indirectement la réponse au modèle et fausserait l’évaluation.
+
+Ainsi, lors de la phase d’entraînement, les variables utilisées seront uniquement les caractéristiques descriptives du produit : valeurs nutritionnelles, nombre d’additifs, catégorie principale, pays, labels et variable `image_saine`.
 
 ---
 
-## 6. Variable cible principale : bad_nutrition
+### Distribution des classes
 
-### Definition
+La distribution de la variable cible `bad_nutrition` est la suivante :
 
-| Nutri-Score | bad_nutrition | Interpretation |
-|---|---:|---|
-| A | 0 | Bonne qualite nutritionnelle |
-| B | 0 | Qualite acceptable |
-| C | 0 | Qualite moyenne mais acceptable |
-| D | 1 | Mauvaise qualite nutritionnelle |
-| E | 1 | Tres mauvaise qualite nutritionnelle |
+| Classe | Signification | Nombre de produits | Pourcentage |
+|---|---|---:|---:|
+| `0` | Qualité nutritionnelle acceptable | 12 467 | 82.49 % |
+| `1` | Mauvaise qualité nutritionnelle | 2 647 | 17.51 % |
 
-### Justification
+La classe minoritaire est donc :
 
-Le Nutri-Score est une information officielle calculee par Open Food Facts a partir
-des valeurs nutritionnelles reelles. La variable bad_nutrition en est une derivee
-binaire directe, ce qui garantit une cible fiable et naturellement presente dans
-les donnees.
+```text
+bad_nutrition = 1
+```
 
-### Remarque sur l’utilisation du Nutri-Score
+Elle représente :
 
-Dans notre dataset, la colonne `nutriscore_grade` est conservée pour assurer la traçabilité de la variable cible. En effet, cette information provient directement de l’API Open Food Facts et elle nous permet de construire la cible `bad_nutrition`.
+```text
+17.51 %
+```
 
-La règle utilisée est la suivante :
-
-- Nutri-Score A, B ou C → `bad_nutrition = 0`
-- Nutri-Score D ou E → `bad_nutrition = 1`
-
-Cependant, cette colonne ne devra pas être utilisée comme variable d’entrée lors de l’entraînement du modèle. Comme elle sert directement à créer la cible, l’utiliser parmi les features donnerait indirectement la réponse au modèle. Cela fausserait l’évaluation et provoquerait un problème de fuite de données, appelé *data leakage*.
-
-Ainsi, pour la phase d’entraînement, nous utiliserons uniquement les variables descriptives du produit, comme les sucres, les graisses, le sel, les protéines, les fibres, l’énergie, le nombre d’additifs, la catégorie principale, le pays et les variables métier comme `image_saine`.
-
-La colonne `nutriscore_grade` reste donc présente dans le dataset pour l’explication et la vérification, mais elle sera explicitement exclue du jeu de variables utilisé par le modèle.
+Cette distribution respecte la condition de déséquilibre, car la classe minoritaire est comprise entre 5 % et 25 %.
 
 ---
 
-## 7. Variable metier : image_saine
+### Graphique de distribution
 
-### Definition
+Le graphique suivant présente la distribution de la variable cible `bad_nutrition`.
 
-image_saine indique si un produit est presente ou percu comme sain a travers ses
-categories ou ses labels marketing. Elle ne represente PAS la qualite nutritionnelle reelle.
+![Distribution de la variable cible](figures/distribution_bad_nutrition.png)
 
-### Regle appliquee
+---
 
-```
-image_saine = 1  si categories_tags OU labels_tags contient au moins
-                    un indicateur d'image saine
-image_saine = 0  sinon
-```
+### Remarque sur les labels
 
-### Indicateurs dans categories_tags
+Les labels Open Food Facts peuvent contenir plusieurs types d’informations : labels nutritionnels, labels de qualité, labels d’origine, labels environnementaux ou informations de certification.
 
-```
-muesli, granola, breakfast-cereals, cereals,
-yogurts, fermented-milk-products,
-smoothies, fruit-juices,
-protein-bars, energy-bars, cereal-bars,
-sports-nutrition, diet-products, light-products,
-plant-based-foods, organic-foods
-```
+Pour construire `image_saine`, nous utilisons uniquement les labels liés à une image nutritionnelle positive, comme :
 
-### Indicateurs dans labels_tags
-
-```
-organic, bio, no-added-sugar, low-fat, reduced-fat,
+```text
+bio, organic, no-added-sugar, low-fat, reduced-fat,
 high-protein, source-of-fibre, rich-in-fibre, natural
 ```
 
-### Labels exclus
-
-Les labels d'origine ou purement logistiques ne sont pas considers comme indicateurs d'image saine :
-
-```
-halal, kosher, fair-trade, recyclable, made-in-*
-```
+Les labels d’origine ou de fabrication, comme `made-in-spain` ou plus généralement `made-in-*`, ne sont pas considérés comme des labels santé et ne sont donc pas utilisés pour définir `image_saine`.
 
 ---
-
-## 8. Conclusion metier : healthy_illusion
-
-### Definition
-
-```
-healthy_illusion = 1  si image_saine = 1 ET bad_nutrition = 1
-healthy_illusion = 0  sinon
-```
-
-### Exemples
-
-| Produit | image_saine | bad_nutrition | healthy_illusion |
-|---|---:|---:|---:|
-| Yaourt bio tres sucre (Nutri-Score D) | 1 | 1 | 1 |
-| Barre proteines Nutri-Score E | 1 | 1 | 1 |
-| Soda classique Nutri-Score E | 0 | 1 | 0 |
-| Muesli Nutri-Score B | 1 | 0 | 0 |
-| Chips Nutri-Score D sans label | 0 | 1 | 0 |
-
----
-
-## 9. Features utilisees en modelisation
-
-### Variables d'entree du modele (12 features)
-
-Variables numeriques (7) :
-```
-sugars_100g, fat_100g, saturated_fat_100g, salt_100g,
-fiber_100g, proteins_100g, energy_kcal_100g
-```
-
-Variable numerique derivee (1) :
-```
-additives_count
-```
-
-Variables categorielle (2) :
-```
-main_category, country
-```
-
-Variables binaires (2) :
-```
-has_labels, image_saine
-```
-
-### Variables a NE PAS utiliser comme features
-
-| Variable | Raison d'exclusion |
-|---|---|
-| nutriscore_grade | Source directe de la cible -> data leakage |
-| bad_nutrition | C'est la cible elle-meme |
-| healthy_illusion | Conclusion metier construite apres prediction |
-| code | Identifiant technique sans valeur predictive |
-| product_name | Texte libre non structure |
-| brands | Texte libre non structure |
-
----
-
-## 10. Nettoyage des donnees applique
-
-1. Suppression des produits sans nutriscore_grade valide (hors {a,b,c,d,e}).
-2. Deduplication sur la base du code-barres (code).
-3. Suppression des lignes avec plus de 2 valeurs nutritionnelles manquantes sur 8.
-4. Imputation des valeurs manquantes restantes par la mediane de la colonne.
-5. Extraction de main_category depuis categories_tags (premier tag normalise).
-6. Extraction de country depuis countries_tags (premier tag normalise).
-7. Creation des variables derivees : bad_nutrition, has_labels, image_saine, healthy_illusion.
-8. Melange aleatoire des lignes avec random_state=42.
-
----
-
-## 11. Distribution des classes
-
-### Contrainte imposee par l'enonce
-
-| Classe bad_nutrition | Exigence |
-|---|---|
-| Classe minoritaire (1) | Entre 5% et 25% du total |
-| Classe majoritaire (0) | Entre 75% et 95% du total |
-
-### Distribution mesurée
-
-| Classe bad_nutrition | Interpretation | Nombre | Pourcentage |
-|---:|---|---:|---:|
-| 0 | Qualite nutritionnelle acceptable | 12 467 | 82.49% |
-| 1 | Mauvaise qualite nutritionnelle | 2 647 | 17.51% |
-| Total | | 15 114 | 100% |
-
-Statistiques complémentaires (calculées à partir de `data/dataset.csv`):
-
-- `image_saine = 1` : 12 624 produits
-- `healthy_illusion = 1` : 2 089 produits
-
-Ces valeurs proviennent du dernier run de `src/data_collection.py` (log du
-15/05/2026). Recalculer la distribution si la collecte est relancée.
-
-### Niveau de déséquilibre (rappel)
-
-La contrainte métier est que la classe minoritaire (`bad_nutrition = 1`) se
-situe idéalement entre 5 % et 25 % du total. Utiliser les métriques adaptées
-(Recall, F1-score, PR-AUC) sur des jeux déséquilibrés.
-
----
-
-## 12. Fichiers produits
-
-| Fichier | Description |
-|---|---|
-| data/raw/*.json | Reponses brutes sauvegardees depuis l'API |
-| data/dataset.csv | Dataset final nettoye |
-| data/sample.csv | Echantillon de 100 lignes |
-| src/data_collection.py | Script de collecte et preparation |
-
----
-
-## 13. Limites connues du dataset
-
-- Open Food Facts est une base collaborative : certaines informations peuvent etre
-  incompletes ou incorrectes.
-- Tous les produits ne possedent pas de Nutri-Score ; ceux sans Nutri-Score sont exclus.
-- image_saine est une variable construite a partir d'une regle documentee,
-  pas d'une annotation officielle.
-- La couverture geographique est variable selon les pays.
-- La distribution des classes depend des categories collectees.
-
----
-
-## 14. Reproductibilite
-
-Le script src/data_collection.py garantit la reproductibilite via :
-
-- random_state=42 pour tous les echantillonnages aleatoires.
-- Sauvegarde des donnees brutes JSON pour eviter de re-requeter l'API.
-- Logging horodate de chaque appel API.
-- Verification automatique de la conformite en fin d'execution.
-
-Pour relancer la collecte :
-```
-python src/data_collection.py
-```
-
----
-
-## 15. Utilisation prevue en Phase 2
-
-1. Entrainer plusieurs modeles de classification (Logistic Regression, Random Forest, XGBoost).
-2. Comparer les modeles : Recall, Precision, F1-score, PR-AUC.
-3. Appliquer des techniques de gestion du desequilibre si necessaire (SMOTE, class_weight).
-4. Analyser les erreurs du modele (matrice de confusion).
-5. Identifier les produits a illusion saine : image_saine=1 ET predicted_bad_nutrition=1.
-6. Interpreter les features importantes (feature importance, SHAP values).
