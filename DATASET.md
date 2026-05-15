@@ -36,7 +36,7 @@ GET https://world.openfoodfacts.org/cgi/search.pl
 ```
 action=process
 json=1
-page_size=100
+page_size=200
 page={page}
 fields=code,product_name,brands,categories_tags,labels_tags,
        countries_tags,nutriscore_grade,nutrition_grades,
@@ -58,20 +58,29 @@ Categories a forte image saine :
 breakfast-cereals, muesli, granola, yogurts,
 fermented-milk-products, fruit-juices, smoothies,
 protein-bars, energy-bars, cereal-bars, sports-nutrition,
-plant-based-foods, organic-foods, plant-based-beverages,
-fruit-based-beverages
+plant-based-foods, organic-foods
 ```
 
 Categories de contraste et de diversification :
 
 ```
-milk, cheeses, breads, biscuits, chocolates, sodas, beverages,
-salty-snacks, ready-meals, frozen-foods, canned-foods, condiments,
-breakfasts, desserts, snacks, groceries, vegetables, fruits
+milk, biscuits, chocolates, waters, unsweetened-beverages,
+plain-yogurts, wholemeal-breads, soups, vegetable-soups,
+canned-vegetables, frozen-vegetables, fruit-compotes,
+pastas, rice, couscous, oatmeal, rolled-oats,
+canned-legumes, canned-beans, lentils, canned-fish, tuna,
+tomato-sauces, biscuits, chocolates
 ```
 
 Ce choix permet de reunir des produits qui semblent sains et d'autres qui ne
 portent pas cette image, afin de construire une cible binaire desequilibree.
+
+Note de cohérence : la liste exacte des catégories interrogées est définie
+dans le script `src/data_collection.py` (variable `COLLECTION_CATEGORIES`).
+L'API est appelée avec `tag_contains=contains`, ce qui effectue un matching
+par sous-chaîne : cela maximise la couverture mais peut aussi introduire du
+bruit (produits non désirés si la chaîne apparaît dans une catégorie plus large).
+Pour reproduire exactement la collecte, consulter `src/data_collection.py`.
 
 ---
 
@@ -165,6 +174,20 @@ les donnees.
 La colonne nutriscore_grade NE DOIT PAS etre utilisee comme feature d'entree du modele
 car elle sert a construire la variable cible. L'inclure provoquerait une fuite de
 donnees (data leakage) et invaliderait l'evaluation du modele.
+
+Remarque opérationnelle : le fichier `data/dataset.csv` peut contenir la colonne
+`nutriscore_grade` pour traçabilité ou archivage. CELA N'IMPLIQUE PAS qu'elle doit
+être utilisée pour l'entraînement. Avant d'entraîner un modèle, supprimer explicitement
+les colonnes sources de la cible (par exemple `nutriscore_grade`) depuis le jeu
+de données utilisé pour l'entraînement. Exemple rapide :
+
+```
+df_train = df.drop(columns=["nutriscore_grade"], errors="ignore")
+```
+
+Si vous souhaitez conserver une copie complète pour audit, sauvegardez-la sous
+`data/dataset_with_nutriscore.csv` et utilisez `data/dataset.csv` (sans la colonne)
+pour l'entraînement.
 
 ---
 

@@ -95,6 +95,12 @@ page={num_page}
 fields=code,product_name,categories_tags,labels_tags,countries_tags,nutriscore_grade,nutriments,additives_n
 ```
 
+Remarque : la liste exacte des catégories interrogées est définie dans
+`src/data_collection.py` (variable `COLLECTION_CATEGORIES`). Le paramètre
+`tag_contains=contains` est utilisé pour le matching, ce qui signifie que la
+recherche se fait par sous-chaîne et peut retourner des produits variés; garder
+cela en tête lors de l'interprétation des résultats.
+
 ---
 
 ## 5. Nature du problème ML
@@ -133,6 +139,19 @@ Interprétation :
 | E | 1 | Mauvaise qualité nutritionnelle |
 
 Important : `nutriscore_grade` sert uniquement à créer la cible. Il ne sera pas utilisé comme variable d’entrée du modèle afin d’éviter le data leakage.
+
+Remarque opérationnelle : selon la sortie du script de collecte, le fichier `data/dataset.csv`
+peut contenir la colonne `nutriscore_grade` pour des raisons de traçabilité. Cela ne
+change pas la règle métier : avant l'entraînement, supprimer explicitement cette
+colonne du jeu de données utilisé pour entraîner les modèles. Exemple rapide en
+pandas :
+
+```
+df_train = df.drop(columns=["nutriscore_grade"], errors="ignore")
+```
+
+Si une copie complète est nécessaire pour audit, conserver `data/dataset_with_nutriscore.csv`
+et utiliser `data/dataset.csv` (sans la colonne) pour l'entraînement.
 
 ---
 
