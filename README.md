@@ -24,18 +24,18 @@ utilisable par une interface Streamlit.
 |---|---:|
 | Dataset final | 15 079 produits |
 | Classe minoritaire | 17,45 % |
-| Meilleure combinaison | XGBoost + `scale_pos_weight` |
+| Meilleure combinaison | XGBoost + stratégie baseline avec `scale_pos_weight` |
 | F1 moyen en validation croisee apres tuning | 0,8954 |
-| Seuil metier optimal | 0,11 |
-| Precision test au seuil optimal | 0,7590 |
-| Recall test au seuil optimal | 0,9639 |
-| F1 test au seuil optimal | 0,8492 |
-| ROC-AUC test | 0,9886 |
-| PR-AUC test | 0,9560 |
+| Seuil metier optimal | 0,10 |
+| Precision test au seuil optimal | 0,7835 |
+| Recall test au seuil optimal | 0,9563 |
+| F1 test au seuil optimal | 0,8613 |
+| ROC-AUC test | 0,9880 |
+| PR-AUC test | 0,9573 |
 
 Le seuil de decision est optimise sur le jeu de validation. La matrice de cout
-considere qu'un faux negatif coute dix fois plus qu'un faux positif. Le seuil
-optimal reduit le cout metier estime de `628` a `351`.
+considere qu'un faux negatif coute dix fois plus qu'un faux positif. Sur le jeu
+de test, le seuil optimal reduit le cout metier estime de `599` a `369`.
 
 ## Installation avec Docker
 
@@ -113,7 +113,7 @@ Exemple de reponse:
 {
   "prediction": "mauvaise_nutrition",
   "probability": 0.78,
-  "threshold": 0.11,
+  "threshold": 0.10,
   "confidence": "high",
   "risk_level": "RISQUE ELEVE"
 }
@@ -161,8 +161,7 @@ modele. L'utilisateur saisit uniquement les informations brutes du produit.
 |   |-- preprocessor.joblib
 |   |-- tuned_model.joblib
 |   `-- final_model.joblib         # Pipeline final, seuil et metadonnees
-|-- figures/                       # Figures et futures captures d'ecran
-|-- Dockerfile
+|-- figures/                       # Figures EDA et captures d'ecran de l'interface
 |-- docker-compose.yml
 |-- requirements.txt               # Dependances du projet
 |-- DATASET.md

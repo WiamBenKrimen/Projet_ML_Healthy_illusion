@@ -13,7 +13,7 @@ appliquees a validation, test et production.
 | `healthy_illusion` | Exclue du modele | Depend directement de la cible |
 | Nutriments numeriques | Imputation mediane + `StandardScaler` | Imputation robuste, ajustee uniquement sur le train |
 | `main_category`, `country` | Imputation mode + One-Hot Encoding | Variables nominales |
-| `has_labels`, `image_saine` | One-Hot Encoding | Variables binaires integrees au pipeline categoriel |
+| `has_labels`, `image_saine` | Conservation comme variables binaires dans le pipeline | Variables 0/1 directement exploitables par le modele |
 | Valeurs negatives | Suppression de la ligne | Incoherence metier |
 | Nutriments superieurs a 100 g/100g | Suppression de la ligne | Incoherence metier |
 | Energie superieure a 1000 kcal/100g | Suppression de la ligne | Incoherence metier |

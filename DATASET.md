@@ -106,7 +106,7 @@ Cela correspond aux produits qui possèdent une image saine, mais qui ont une ma
 | `code` | Catégorielle | Identifiant unique du produit dans Open Food Facts | Code produit | Aucune |
 | `product_name` | Catégorielle | Nom du produit | Texte | Aucune |
 | `brands` | Catégorielle | Marque du produit | Texte | Aucune |
-| `main_category` | Catégorielle | Catégorie principale du produit | Exemples : yogurts, muesli, biscuits, chocolates | Aucune |
+| `main_category` | Catégorielle | Catégorie principale normalisée à partir des tags Open Food Facts | Exemples : plant-based-foods-and-beverages, dairies, beverages-and-beverages-preparations, snacks, seafood | Aucune |
 | `country` | Catégorielle | Pays associé au produit | Exemples : france, morocco, united-states | Aucune |
 | `sugars_100g` | Numérique | Quantité de sucres pour 100g | Valeur positive ou nulle | g / 100g |
 | `fat_100g` | Numérique | Quantité de graisses pour 100g | Valeur positive ou nulle | g / 100g |
