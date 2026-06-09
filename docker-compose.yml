@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   # ─── Service FastAPI ──────────────────────────────────────────────────────
@@ -13,6 +11,8 @@ services:
       - ./models:/app/models        # modèles montés en volume
     environment:
       - PYTHONUNBUFFERED=1
+      - MODEL_PATH=models/final_model.joblib
+      - LOG_LEVEL=INFO
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s

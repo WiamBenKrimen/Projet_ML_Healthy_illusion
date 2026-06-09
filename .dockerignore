@@ -16,6 +16,7 @@ env/
 
 # Cache Python
 __pycache__/
+.pytest_cache/
 *.pyc
 *.pyo
 *.pyd
@@ -33,12 +34,10 @@ models/threshold_optimization.csv
 # Figures
 figures/
 
-# Scripts
-scripts/
-
 # IDE
 .vscode/
 .idea/
+.edge-*/
 
 # OS
 .DS_Store
