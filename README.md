@@ -49,7 +49,7 @@ de test, le seuil optimal reduit le cout metier estime de `599` a `369`.
 Depuis la racine du projet:
 
 ```bash
-docker compose up
+docker-compose up
 ```
 
 Une fois les services demarres:
@@ -166,6 +166,7 @@ modele. L'utilisateur saisit uniquement les informations brutes du produit.
 |-- requirements.txt               # Dependances du projet
 |-- DATASET.md
 |-- preprocessing_decisions.md
+`-- LICENSE
 ```
 
 ## Reproduire l'analyse Machine Learning
@@ -199,3 +200,7 @@ docker compose config
 - Les performances dependent de la qualite des valeurs nutritionnelles saisies.
 - Les categories rares ou absentes des donnees d'entrainement sont moins fiables.
 - Le modele doit etre reentraine lorsque la distribution des donnees evolue.
+
+## Licence
+
+Ce projet est distribue sous licence MIT. Voir [LICENSE](LICENSE).
