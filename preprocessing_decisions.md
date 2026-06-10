@@ -1,30 +1,37 @@
-# Tableau de décision — Preprocessing
+# Tableau de decision - Preprocessing
 
-Ce fichier documente les décisions prises pendant la Phase 2.
+Ce tableau documente les decisions appliquees par le pipeline final. Les
+statistiques d'imputation sont apprises uniquement sur `train.csv`, puis
+appliquees a validation, test et production.
 
-Le tableau suivant respecte le livrable demandé : pour chaque variable, il précise l'action effectuée, le type d'action et la justification.
+| Variable | Action | Justification |
+|---|---|---|
+| `code` | Exclue du modele | Identifiant unique, non generalisable |
+| `product_name` | Exclue du modele | Texte libre hors perimetre |
+| `brands` | Exclue du modele | Tres forte cardinalite |
+| `nutriscore_grade` | Exclue du modele | Source directe de la cible, fuite de donnees |
+| `healthy_illusion` | Exclue du modele | Depend directement de la cible |
+| Nutriments numeriques | Imputation mediane + `StandardScaler` | Imputation robuste, ajustee uniquement sur le train |
+| `main_category`, `country` | Imputation mode + One-Hot Encoding | Variables nominales |
+| `has_labels`, `image_saine` | Conservation comme variables binaires dans le pipeline | Variables 0/1 directement exploitables par le modele |
+| Valeurs negatives | Suppression de la ligne | Incoherence metier |
+| Nutriments superieurs a 100 g/100g | Suppression de la ligne | Incoherence metier |
+| Energie superieure a 1000 kcal/100g | Suppression de la ligne | Incoherence metier |
+| Graisses saturees superieures aux graisses totales | Suppression de la ligne | Incoherence logique |
+| Autres outliers IQR | Conservation | Valeurs extremes valides et potentiellement predictives |
+| `sugar_energy_ratio` | Creation | Rapport sucre / energie |
+| `sat_fat_ratio` | Creation | Part de graisses saturees dans les graisses |
+| `salt_sugar_interaction` | Creation | Interaction de deux facteurs defavorables |
+| `nutrition_risk_score` | Creation | Score metier combinant nutriments favorables et defavorables |
+| `bad_nutrition` | Cible | Nutri-Score D/E = 1, A/B/C = 0 |
 
-| Variable               | Action effectuée                                                | Type d'action                        | Justification                                                                                                                                                                               |
-|:-----------------------|:----------------------------------------------------------------|:-------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| code                   | Suppression de la modélisation                                  | Suppression                          | Identifiant unique du produit. Il ne contient pas d'information généralisable pour prédire la qualité nutritionnelle.                                                                       |
-| product_name           | Suppression de la modélisation                                  | Suppression                          | Texte libre avec beaucoup de modalités différentes. Non exploité dans cette version du projet afin de garder un modèle tabulaire simple.                                                    |
-| brands                 | Suppression de la modélisation                                  | Suppression                          | Variable avec forte cardinalité. Son encodage créerait beaucoup de colonnes et pourrait introduire du bruit.                                                                                |
-| nutriscore_grade       | Suppression de la modélisation                                  | Suppression                          | Cette variable sert à construire la cible bad_nutrition. L'utiliser comme feature créerait un data leakage.                                                                                 |
-| healthy_illusion       | Suppression de la modélisation                                  | Suppression                          | Variable construite à partir de image_saine et bad_nutrition. Elle dépend donc directement de la cible et ne doit pas être utilisée comme entrée du modèle.                                 |
-| sugars_100g            | Imputation médiane + normalisation                              | Imputation + transformation          | Variable numérique nutritionnelle. Les valeurs manquantes sont imputées par la médiane calculée sur le train set, puis la variable est standardisée pour les modèles sensibles à l'échelle. |
-| fat_100g               | Imputation médiane + normalisation                              | Imputation + transformation          | Variable numérique positive. L'imputation médiane est robuste aux valeurs extrêmes, puis StandardScaler permet d'avoir une échelle comparable avec les autres variables numériques.         |
-| saturated_fat_100g     | Imputation médiane + normalisation                              | Imputation + transformation          | Variable importante pour la qualité nutritionnelle. Elle est imputée par la médiane et standardisée avant la modélisation.                                                                  |
-| salt_100g              | Imputation médiane + normalisation                              | Imputation + transformation          | Variable numérique liée au risque nutritionnel. Les valeurs manquantes sont imputées par la médiane et la variable est standardisée.                                                        |
-| fiber_100g             | Imputation médiane + normalisation                              | Imputation + transformation          | Variable numérique utile car les fibres peuvent indiquer une meilleure qualité nutritionnelle. Elle est imputée par la médiane puis standardisée.                                           |
-| proteins_100g          | Imputation médiane + normalisation                              | Imputation + transformation          | Variable nutritionnelle numérique. L'imputation médiane limite l'influence des valeurs extrêmes et la normalisation prépare les modèles sensibles à l'échelle.                              |
-| energy_kcal_100g       | Imputation médiane + normalisation                              | Imputation + transformation          | Variable numérique représentant l'apport énergétique. Elle est conservée, imputée si nécessaire, puis standardisée.                                                                         |
-| additives_count        | Imputation médiane + normalisation                              | Imputation + transformation          | Variable numérique indiquant le nombre d'additifs. Elle est conservée car elle peut apporter un signal complémentaire sur le profil du produit.                                             |
-| main_category          | Imputation par la modalité la plus fréquente + One-Hot Encoding | Imputation + encodage                | Variable catégorielle nominale. Elle ne possède pas d'ordre naturel, donc One-Hot Encoding est adapté.                                                                                      |
-| country                | Imputation par la modalité la plus fréquente + One-Hot Encoding | Imputation + encodage                | Variable catégorielle nominale. Elle est encodée par One-Hot Encoding pour être utilisée par les modèles.                                                                                   |
-| has_labels             | Conservation comme variable binaire                             | Transformation                       | Variable déjà binaire. Elle ne nécessite pas d'encodage complexe et peut être utilisée directement comme indicateur.                                                                        |
-| image_saine            | Conservation comme variable binaire                             | Transformation                       | Variable métier binaire indiquant si le produit possède une image nutritionnelle positive. Elle est conservée comme feature explicative.                                                    |
-| sugar_energy_ratio     | Création puis normalisation                                     | Feature engineering + transformation | Nouvelle variable dérivée mesurant le rapport entre les sucres et l'énergie du produit. Elle peut aider à détecter les produits riches en sucres.                                           |
-| sat_fat_ratio          | Création puis normalisation                                     | Feature engineering + transformation | Nouvelle variable dérivée mesurant la part des graisses saturées dans les graisses totales. Elle apporte une information métier sur la qualité des graisses.                                |
-| salt_sugar_interaction | Création puis normalisation                                     | Feature engineering + transformation | Variable d'interaction combinant deux facteurs nutritionnels défavorables : le sel et le sucre.                                                                                             |
-| nutrition_risk_score   | Création puis normalisation                                     | Feature engineering + transformation | Score métier simple combinant plusieurs signaux nutritionnels : sucre, graisses saturées, sel, énergie et fibres.                                                                           |
-| bad_nutrition          | Conservation comme variable cible                               | Cible                                | Variable cible à prédire. Elle n'est pas transformée comme feature d'entrée.                                                                                                                |
+## Verification finale
+
+- Dataset: 15 079 lignes, sans doublon de code.
+- Classe minoritaire: environ 17,45 %.
+- Aucune valeur negative.
+- Aucune valeur nutritionnelle impossible superieure a 100 g/100g.
+- Aucune ligne avec `saturated_fat_100g > fat_100g`.
+- Valeurs manquantes conservees avant le split et traitees dans le pipeline.
+- Split stratifie reproductible: 60 % train, 20 % validation, 20 % test.
+- Strategies comparees: class weights, SMOTE, undersampling et SMOTETomek.

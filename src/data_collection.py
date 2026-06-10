@@ -449,12 +449,31 @@ def build_dataframe(products: list[dict[str, Any]]) -> pd.DataFrame:
     for column in numeric_columns:
         df[column] = pd.to_numeric(df[column], errors="coerce")
 
+    # Keep missing values for the train-fitted preprocessing pipeline.
     df["missing_nutrition_values"] = df[numeric_columns].isna().sum(axis=1)
     df = df[df["missing_nutrition_values"] <= 2].copy()
     df = df.drop(columns=["missing_nutrition_values"])
 
-    for column in numeric_columns:
-        df[column] = df[column].fillna(df[column].median())
+    # Remove impossible values; valid extreme values are retained as signal.
+    positive_columns = numeric_columns
+    valid = ~(df[positive_columns].lt(0).any(axis=1))
+    valid &= ~(df[
+        [
+            "sugars_100g",
+            "fat_100g",
+            "saturated_fat_100g",
+            "salt_100g",
+            "fiber_100g",
+            "proteins_100g",
+        ]
+    ].gt(100).any(axis=1))
+    valid &= ~(df["energy_kcal_100g"].gt(1000))
+    valid &= ~(
+        df["saturated_fat_100g"].notna()
+        & df["fat_100g"].notna()
+        & (df["saturated_fat_100g"] > df["fat_100g"])
+    )
+    df = df[valid].copy()
 
     df["main_category"] = df["main_category"].fillna("unknown").astype(str)
     df["country"] = df["country"].fillna("unknown").astype(str)

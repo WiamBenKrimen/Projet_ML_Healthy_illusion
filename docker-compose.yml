@@ -1,0 +1,42 @@
+services:
+
+  # ─── Service FastAPI ──────────────────────────────────────────────────────
+  api:
+    build: .
+    container_name: healthy_illusion_api
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models        # modèles montés en volume
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MODEL_PATH=models/final_model.joblib
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # ─── Service Streamlit ────────────────────────────────────────────────────
+  ui:
+    build: .
+    container_name: healthy_illusion_ui
+    command: streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models
+    environment:
+      - PYTHONUNBUFFERED=1
+      - API_URL=http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  default:
+    name: healthy_illusion_network

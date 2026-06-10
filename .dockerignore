@@ -1,0 +1,44 @@
+# Données brutes
+data/raw/
+data/processed/
+
+# Notebooks
+notebooks/
+
+# Git
+.git/
+.gitignore
+
+# Environnements virtuels
+venv/
+env/
+.venv/
+
+# Cache Python
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+
+# Variables d'environnement
+.env
+.env.*
+
+# Modèles intermédiaires (on garde seulement final_model.joblib)
+models/preprocessor.joblib
+models/tuned_model.joblib
+models/model_selection_results.csv
+models/threshold_optimization.csv
+
+# Figures
+figures/
+
+# IDE
+.vscode/
+.idea/
+.edge-*/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,32 @@
+# API
+fastapi==0.136.3
+uvicorn==0.48.0
+python-multipart==0.0.29
+pydantic==2.13.4
+
+# Interface
+streamlit==1.45.1
+
+# ML
+scikit-learn==1.8.0
+xgboost==3.2.0
+joblib==1.5.3
+imbalanced-learn==0.14.1
+
+# Data — pandas<3 requis par streamlit 1.45.1
+pandas==2.2.3
+numpy==2.4.3
+
+# HTTP
+requests==2.32.3
+httpx==0.28.1
+
+# Tests
+pytest==8.4.2
+
+# Notebooks et visualisation
+matplotlib==3.10.8
+seaborn==0.13.2
+scipy==1.17.1
+jupyter==1.1.1
+nbconvert==7.16.6

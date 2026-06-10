@@ -94,7 +94,7 @@ Cela correspond aux produits qui possèdent une image saine, mais qui ont une ma
 
 ### Dimensions du dataset
 
-**Nombre de lignes :** 15 114  
+**Nombre de lignes :** 15 079
 **Nombre de colonnes :** 18  
 
 ---
@@ -106,7 +106,7 @@ Cela correspond aux produits qui possèdent une image saine, mais qui ont une ma
 | `code` | Catégorielle | Identifiant unique du produit dans Open Food Facts | Code produit | Aucune |
 | `product_name` | Catégorielle | Nom du produit | Texte | Aucune |
 | `brands` | Catégorielle | Marque du produit | Texte | Aucune |
-| `main_category` | Catégorielle | Catégorie principale du produit | Exemples : yogurts, muesli, biscuits, chocolates | Aucune |
+| `main_category` | Catégorielle | Catégorie principale normalisée à partir des tags Open Food Facts | Exemples : plant-based-foods-and-beverages, dairies, beverages-and-beverages-preparations, snacks, seafood | Aucune |
 | `country` | Catégorielle | Pays associé au produit | Exemples : france, morocco, united-states | Aucune |
 | `sugars_100g` | Numérique | Quantité de sucres pour 100g | Valeur positive ou nulle | g / 100g |
 | `fat_100g` | Numérique | Quantité de graisses pour 100g | Valeur positive ou nulle | g / 100g |
@@ -168,8 +168,8 @@ La distribution de la variable cible `bad_nutrition` est la suivante :
 
 | Classe | Signification | Nombre de produits | Pourcentage |
 |---|---|---:|---:|
-| `0` | Qualité nutritionnelle acceptable | 12 467 | 82.49 % |
-| `1` | Mauvaise qualité nutritionnelle | 2 647 | 17.51 % |
+| `0` | Qualité nutritionnelle acceptable | 12 447 | 82.55 % |
+| `1` | Mauvaise qualité nutritionnelle | 2 632 | 17.45 % |
 
 La classe minoritaire est donc :
 
@@ -180,10 +180,21 @@ bad_nutrition = 1
 Elle représente :
 
 ```text
-17.51 %
+17.45 %
 ```
 
 Cette distribution respecte la condition de déséquilibre, car la classe minoritaire est comprise entre 5 % et 25 %.
+
+### Valeurs manquantes et nettoyage
+
+Les valeurs manquantes nutritionnelles sont conservees dans `data/dataset.csv`.
+Elles ne sont pas imputees avant le split afin d'eviter toute fuite de donnees.
+Le `SimpleImputer(strategy="median")` du pipeline apprend ses statistiques
+uniquement sur `train.csv`, puis les applique a validation, test et production.
+
+Les lignes contenant des incoherences metier sont supprimees avant le split:
+valeurs negatives, nutriments superieurs a 100 g/100g, energie superieure a
+1000 kcal/100g et graisses saturees superieures aux graisses totales.
 
 ---
 
